@@ -1,0 +1,31 @@
+{
+  "name": "nestjs-angular-auth",
+  "version": "0.0.1",
+  "license": "MIT",
+  "scripts": {
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/malvdev/nestjs-angular-auth.git"
+  },
+  "keywords": [
+    "nestjs",
+    "angular",
+    "authentication",
+    "auth"
+  ],
+  "bugs": {
+    "url": "https://github.com/malvdev/nestjs-angular-auth/issues"
+  },
+  "homepage": "https://github.com/malvdev/nestjs-angular-auth#readme",
+  "devDependencies": {
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
+    "husky": "^6.0.0"
+  },
+  "engines": {
+    "node": ">=15.0.0",
+    "npm": ">=6.0.0"
+  }
+}
