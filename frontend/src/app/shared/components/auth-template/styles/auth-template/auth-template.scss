@@ -1,0 +1,9 @@
+@import "./__container/auth-template__container.scss";
+@import "./__logo/auth-template__logo.scss";
+@import "./__title/auth-template__title.scss";
+
+:host.app-auth-template {
+  display: block;
+  padding: 0 8px;
+  max-width: 400px;
+}
