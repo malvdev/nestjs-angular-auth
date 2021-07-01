@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { LogoModule } from '../logo';
 
+import { LogoModule } from '../logo';
 import { AuthTemplateComponent } from './auth-template.component';
 
 describe('AuthTemplateComponent', () => {

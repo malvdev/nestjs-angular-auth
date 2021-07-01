@@ -3,16 +3,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { AuthTemplateModule, FieldErrorModule } from '@shared/components';
-import { RegisterFormComponent } from './register-form';
-import { RegisterComponent } from './register.component';
+import { LoginFormComponent } from './login-form';
+import { LoginComponent } from './login.component';
 
-describe('RegisterComponent', () => {
-  let component: RegisterComponent;
-  let fixture: ComponentFixture<RegisterComponent>;
+describe('LoginComponent', () => {
+  let component: LoginComponent;
+  let fixture: ComponentFixture<LoginComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [RegisterComponent, RegisterFormComponent],
+      declarations: [LoginComponent, LoginFormComponent],
       imports: [
         RouterTestingModule,
         ReactiveFormsModule,
@@ -23,7 +23,7 @@ describe('RegisterComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RegisterComponent);
+    fixture = TestBed.createComponent(LoginComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

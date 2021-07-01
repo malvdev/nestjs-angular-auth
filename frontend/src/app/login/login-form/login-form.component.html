@@ -1,0 +1,38 @@
+<form class="app-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <div class="app-form__controls">
+    <div class="app-form__field-wrapper">
+      <label for="form-email">Email</label>
+      <input
+        id="form-email"
+        type="text"
+        name="email"
+        spellcheck="false"
+        autocapitalize="off"
+        autofocus="autofocus"
+        autocomplete="username"
+        formControlName="email"
+      />
+      <app-field-error *ngIf="email && email.touched && email.invalid">
+        Missing email.
+      </app-field-error>
+    </div>
+
+    <div class="app-form__field-wrapper">
+      <label for="form-password">Password</label>
+      <input
+        id="form-password"
+        type="password"
+        name="password"
+        autocomplete="current-password"
+        formControlName="password"
+      />
+      <app-field-error *ngIf="password && password.touched && password.invalid">
+        Invalid email and/or password.
+      </app-field-error>
+    </div>
+
+    <button class="app-form__submit" [disabled]="!loginForm.valid">
+      Log in
+    </button>
+  </div>
+</form>
