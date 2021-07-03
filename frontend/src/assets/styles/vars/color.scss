@@ -1,0 +1,15 @@
+:root {
+  --color-text: #4d4d4d;
+  --color-link: var(--color-blue-link-web);
+
+  --color-accent: #026aa7;
+  --color-accent-content: var(--color-white);
+  --color-error: #eb5a46;
+
+  --color-button-primary: #0079bf;
+  --color-button-primary-hover: #055a8c;
+  --color-button-primary-active: #2778a7;
+  --color-button-primary-content: var(--color-white);
+  --color-button-disabled: rgba(226, 228, 230, 1);
+  --color-button-disabled-content: rgba(140, 140, 140, 1);
+}

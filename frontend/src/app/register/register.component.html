@@ -1,0 +1,5 @@
+<app-auth-template title="Sign up for your account">
+  <app-register-form (formSubmit)="onSubmit($event)"></app-register-form>
+  <hr />
+  <a href="#" [routerLink]="['/auth/login']">Already have an account? Log In</a>
+</app-auth-template>
