@@ -3,7 +3,12 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ForgotComponent } from './forgot.component';
 
-const routes: Routes = [{ path: 'forgot', component: ForgotComponent }];
+const routes: Routes = [
+  {
+    path: 'auth/forgot',
+    component: ForgotComponent,
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

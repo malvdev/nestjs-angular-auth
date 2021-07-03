@@ -1,4 +1,7 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
+
+import { ApiResponse, AuthService } from '@core/auth';
 
 @Component({
   selector: 'app-register',
@@ -6,12 +9,25 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
   styleUrls: ['./register.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RegisterComponent implements OnInit {
-  constructor() {}
-
-  ngOnInit(): void {}
+export class RegisterComponent {
+  constructor(
+    private readonly _authService: AuthService,
+    private readonly _toastr: ToastrService
+  ) {}
 
   onSubmit(form: any): void {
-    console.log('form register', form);
+    form.password_confirmation = form.password;
+    this._authService.register(form).subscribe(
+      (res) => {
+        console.log('Res', res);
+
+        // if (res.errors?.length) {
+        //   this._toastr.error(res.errors.join(' '), 'Error');
+        // }
+      },
+      (error: string) => {
+        this._toastr.error('Error', error);
+      }
+    );
   }
 }

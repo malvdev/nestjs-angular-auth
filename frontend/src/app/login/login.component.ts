@@ -1,4 +1,5 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
+import { AuthService } from '@core/auth';
 
 @Component({
   selector: 'app-login',
@@ -7,7 +8,16 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
-  public onSubmit(form: any): void {
-    console.log('login form', form);
+  constructor(private readonly _authService: AuthService) {}
+
+  onSubmit(form: any): void {
+    this._authService.login(form).subscribe(
+      (res) => {
+        console.log('login form res', res);
+      },
+      (error) => {
+        console.log('login form error', error);
+      }
+    );
   }
 }

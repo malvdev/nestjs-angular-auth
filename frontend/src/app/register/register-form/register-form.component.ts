@@ -21,7 +21,7 @@ export class RegisterFormComponent {
   @Output()
   formSubmit: EventEmitter<any> = new EventEmitter<any>();
 
-  public registerForm: FormGroup = new FormGroup({
+  registerForm: FormGroup = new FormGroup({
     name: new FormControl(null, [Validators.required]),
     email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, [
@@ -30,7 +30,7 @@ export class RegisterFormComponent {
     ]),
   });
 
-  public isShowPassword: boolean = false;
+  isShowPassword: boolean = false;
 
   get email(): AbstractControl | null {
     return this.registerForm.get('email');
@@ -40,15 +40,15 @@ export class RegisterFormComponent {
     return this.registerForm.get('password');
   }
 
-  public onToggleVisiblePassword(): void {
+  onToggleVisiblePassword(): void {
     this.isShowPassword = !this.isShowPassword;
   }
 
-  public getPasswordType(): string {
+  getPasswordType(): string {
     return this.isShowPassword ? 'text' : 'password';
   }
 
-  public onSubmit(): void {
+  onSubmit(): void {
     if (this.registerForm.valid) {
       this.formSubmit.emit(this.registerForm.value as any);
     }

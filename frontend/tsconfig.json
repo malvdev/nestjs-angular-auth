@@ -20,7 +20,8 @@
     "module": "es2020",
     "lib": ["es2018", "dom"],
     "paths": {
-      "@core": ["src/app/core/index.ts"],
+      "@env/*": ["src/environments/*"],
+      "@core/auth": ["src/app/core/auth/index.ts"],
       "@shared/components": ["src/app/shared/components/index.ts"]
     }
   },

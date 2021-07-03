@@ -21,7 +21,7 @@ export class LoginFormComponent {
   @Output()
   formSubmit: EventEmitter<any> = new EventEmitter<any>();
 
-  public loginForm: FormGroup = new FormGroup({
+  loginForm: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, [Validators.required]),
   });
@@ -34,7 +34,7 @@ export class LoginFormComponent {
     return this.loginForm.get('password');
   }
 
-  public onSubmit(): void {
+  onSubmit(): void {
     if (this.loginForm.valid) {
       this.formSubmit.emit(this.loginForm.value as any);
     }

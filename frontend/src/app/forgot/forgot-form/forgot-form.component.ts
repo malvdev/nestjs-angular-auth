@@ -20,7 +20,7 @@ import {
 export class ForgotFormComponent {
   @Output() formSubmit = new EventEmitter<any>();
 
-  public forgotForm: FormGroup = new FormGroup({
+  forgotForm: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
   });
 
