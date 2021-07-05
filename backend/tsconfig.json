@@ -10,6 +10,14 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
-    "incremental": true
+    "incremental": true,
+    "paths": {
+      "@auth": ["src/auth/index.ts"],
+      "@auth/*": ["src/auth/*"],
+      "@shared": ["src/shared/index.ts"],
+      "@shared/*": ["src/shared/*"],
+      "@user": ["src/user/index.ts"],
+      "@user/*": ["src/user/*"]
+    }
   }
 }
