@@ -34,8 +34,6 @@ describe('AuthTemplateComponent', () => {
           inputTitle
         );
       })
-      .catch(() => {
-        console.log('error');
-      });
+      .catch(() => {});
   });
 });

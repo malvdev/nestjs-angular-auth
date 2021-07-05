@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { LoginContext } from '@core';
 
 import { FieldErrorModule } from '@shared/components';
 import { LoginFormComponent } from './login-form.component';
@@ -67,7 +68,7 @@ describe('LoginFormComponent', () => {
     component.loginForm.get('password')?.setValue('123456789');
     expect(component.loginForm.valid).toBeTruthy();
 
-    let form: any | undefined;
+    let form: LoginContext | undefined;
     component.formSubmit.subscribe((value) => (form = value));
     component.onSubmit();
 

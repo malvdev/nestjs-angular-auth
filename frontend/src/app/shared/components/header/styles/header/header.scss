@@ -1,0 +1,14 @@
+@import "./__button/header__button.scss";
+@import "./__logo-icon/header__logo-icon.scss";
+@import "./__logo/header__logo.scss";
+
+.app-header {
+  display: flex;
+  padding: 8px 16px;
+  height: 50px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow);
+  box-sizing: border-box;
+}

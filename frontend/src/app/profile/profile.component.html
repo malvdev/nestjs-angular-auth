@@ -1,0 +1,16 @@
+<app-header></app-header>
+<h2 class="app-title">Profile</h2>
+<app-details-card *ngIf="profile">
+  <app-details-card-row rowTitle="Username">
+    {{ profile.name }}
+  </app-details-card-row>
+  <app-details-card-row rowTitle="Email">
+    {{ profile.email }}
+  </app-details-card-row>
+  <app-details-card-row rowTitle="Created at">
+    {{ profile.createdAt | date }}
+  </app-details-card-row>
+  <app-details-card-row rowTitle="Roles">
+    {{ profile.roles }}
+  </app-details-card-row>
+</app-details-card>

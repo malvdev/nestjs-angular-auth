@@ -10,6 +10,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { RegisterContext } from '@core';
 
 @Component({
   selector: 'app-register-form',
@@ -19,7 +20,7 @@ import {
 })
 export class RegisterFormComponent {
   @Output()
-  formSubmit: EventEmitter<any> = new EventEmitter<any>();
+  formSubmit: EventEmitter<RegisterContext> = new EventEmitter<RegisterContext>();
 
   registerForm: FormGroup = new FormGroup({
     name: new FormControl(null, [Validators.required]),
@@ -50,7 +51,7 @@ export class RegisterFormComponent {
 
   onSubmit(): void {
     if (this.registerForm.valid) {
-      this.formSubmit.emit(this.registerForm.value as any);
+      this.formSubmit.emit(this.registerForm.value as RegisterContext);
     }
   }
 }

@@ -11,6 +11,8 @@ import { AppComponent } from './app.component';
 import { RegisterModule } from './register';
 import { LoginModule } from './login';
 import { ForgotModule } from './forgot/forgot.module';
+import { ProfileModule } from './profile/profile.module';
+import { HeaderModule } from './shared/components/header/header.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,14 +24,15 @@ import { ForgotModule } from './forgot/forgot.module';
       apiBase: environment.serverUrl,
     }),
     ToastrModule.forRoot({
-      timeOut: 3000,
-      progressBar: true,
+      timeOut: 5000,
     }),
     RegisterModule,
     LoginModule,
     ForgotModule,
-    AppRoutingModule,
+    ProfileModule,
     AuthModule,
+    AppRoutingModule,
+    HeaderModule,
   ],
   bootstrap: [AppComponent],
 })

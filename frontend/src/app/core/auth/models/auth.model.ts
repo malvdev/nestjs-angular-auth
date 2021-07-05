@@ -5,7 +5,7 @@ export interface LoginContext {
 }
 
 export interface RegisterContext {
-  username: string;
+  name: string;
   email: string;
   password: string;
   remember?: boolean;
@@ -34,6 +34,10 @@ export interface UserData {
   id: number;
   name: string;
   email: string;
+  isActive?: string;
+  roles?: string[];
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface AuthOptions {

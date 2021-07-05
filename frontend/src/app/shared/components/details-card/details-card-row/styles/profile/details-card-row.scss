@@ -1,0 +1,9 @@
+@import "./__title/details-card-row__tittle.scss";
+@import "./__value/details-card-row__value.scss";
+
+.app-details-card-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+}

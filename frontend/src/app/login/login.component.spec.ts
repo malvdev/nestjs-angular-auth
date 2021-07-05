@@ -5,12 +5,12 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AuthService, AUTH_OPTIONS_TOKEN } from '@core/auth';
 
 import { AuthTemplateModule, FieldErrorModule } from '@shared/components';
-import { CredentialsService } from '../core/auth/services/credentials.service';
+import { CredentialsService } from '@core/auth/services';
 import {
   LocalStorageService,
   MemoryStorageService,
   SessionStorageService,
-} from '../core/storages';
+} from '@core/storages';
 import { LoginFormComponent } from './login-form';
 import { LoginComponent } from './login.component';
 

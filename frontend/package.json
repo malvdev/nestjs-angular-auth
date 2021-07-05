@@ -45,9 +45,21 @@
       "<rootDir>/dist/"
     ],
     "moduleNameMapper": {
-      "@env/*": "<rootDir>/src/environments/*",
-      "@core": "<rootDir>/src/app/core/index.ts",
-      "@shared/components": "<rootDir>/src/app/shared/components/index.ts"
+      "@env/*": [
+        "<rootDir>/src/environments/*"
+      ],
+      "@core": [
+        "<rootDir>/src/app/core/index.ts"
+      ],
+      "@core/*": [
+        "<rootDir>/src/app/core/*"
+      ],
+      "@shared": [
+        "<rootDir>/src/app/shared/index.ts"
+      ],
+      "@shared/*": [
+        "<rootDir>/src/app/shared/*"
+      ]
     },
     "globals": {
       "ts-jest": {

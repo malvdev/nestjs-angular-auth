@@ -10,6 +10,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
+import { LoginContext } from '@core';
 
 @Component({
   selector: 'app-login-form',
@@ -19,7 +20,7 @@ import {
 })
 export class LoginFormComponent {
   @Output()
-  formSubmit: EventEmitter<any> = new EventEmitter<any>();
+  formSubmit: EventEmitter<LoginContext> = new EventEmitter<LoginContext>();
 
   loginForm: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
@@ -36,7 +37,7 @@ export class LoginFormComponent {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
-      this.formSubmit.emit(this.loginForm.value as any);
+      this.formSubmit.emit(this.loginForm.value as LoginContext);
     }
   }
 }

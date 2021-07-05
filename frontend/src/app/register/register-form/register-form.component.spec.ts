@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { RegisterContext } from '@core';
 
 import { FieldErrorModule } from '@shared/components';
 import { RegisterFormComponent } from './register-form.component';
@@ -91,7 +92,7 @@ describe('RegisterFormComponent', () => {
     component.registerForm.get('password')?.setValue('123456789');
     expect(component.registerForm.valid).toBeTruthy();
 
-    let form: any | undefined;
+    let form: RegisterContext | undefined;
     component.formSubmit.subscribe((value) => (form = value));
     component.onSubmit();
 

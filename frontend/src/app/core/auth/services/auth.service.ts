@@ -1,7 +1,7 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 
 import {
@@ -38,22 +38,17 @@ export class AuthService {
     return this._credentialsService.isAuth();
   }
 
-  getStorage() {
-    return this._credentialsService.storage;
-  }
-
-  getAuthToken(): string {
-    return this._credentialsService.storage.token;
+  getAuthToken(): string | undefined {
+    return this._credentialsService.credentials?.accessToken;
   }
 
   register(context: RegisterContext): Observable<AuthData> {
     return this._http
-      .post<AuthData>(`${this.apiBase}/auth/register`, {
+      .post<AuthData>(`${this.apiBase}/register`, {
         ...context,
       })
       .pipe(
         map((data) => {
-          console.log('data', data);
           this._credentialsService.setCredentials(data, context.remember);
           return data;
         })
@@ -62,34 +57,30 @@ export class AuthService {
 
   login(context: LoginContext): Observable<AuthData> {
     return this._http
-      .post<AuthData>(`${this.apiBase}/auth/login`, {
+      .post<AuthData>(`${this.apiBase}/login`, {
         ...context,
       })
       .pipe(
         map((data) => {
-          console.log('login data', data)
           this._credentialsService.setCredentials(data, context.remember);
           return data;
         })
       );
   }
 
-  logout(): Observable<AuthData> {
-    return this._http.delete<AuthData>(`${this.apiBase}/auth/logout`).pipe(
-      finalize(() => {
-        this._credentialsService.setCredentials();
-      })
-    );
+  logout(): Observable<boolean> {
+    this._credentialsService.setCredentials();
+    return of(true);
   }
 
-  forgotPassword(email: string): Observable<AuthData> {
-    return this._http.get<AuthData>(`${this.apiBase}/auth/forgot/${email}`);
+  forgotPassword(email: string): Observable<boolean> {
+    //return this._http.get<AuthData>(`${this.apiBase}/forgot/${email}`);
+    return of(true);
   }
 
   updatePassword(id: string, context: PasswordContext): Observable<AuthData> {
-    return this._http.put<AuthData>(
-      `${this.apiBase}/auth/update-password/${id}`,
-      { ...context }
-    );
+    return this._http.put<AuthData>(`${this.apiBase}/update-password/${id}`, {
+      ...context,
+    });
   }
 }

@@ -1,5 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { AuthService } from '@core/auth';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService, LoginContext } from '@core/auth';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -8,15 +11,24 @@ import { AuthService } from '@core/auth';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginComponent {
-  constructor(private readonly _authService: AuthService) {}
+  constructor(
+    private readonly _router: Router,
+    private readonly _route: ActivatedRoute,
+    private readonly _authService: AuthService,
+    private readonly _toastr: ToastrService
+  ) {}
 
-  onSubmit(form: any): void {
+  onSubmit(form: LoginContext): void {
     this._authService.login(form).subscribe(
       (res) => {
-        console.log('login form res', res);
+        this._toastr.success('You are successfully logged in', 'Success');
+        this._router.navigate(
+          [this._route.snapshot.queryParams.redirect || '/profile'],
+          { replaceUrl: true }
+        );
       },
-      (error) => {
-        console.log('login form error', error);
+      ({ error }: HttpErrorResponse) => {
+        this._toastr.error(error.message, 'Error');
       }
     );
   }

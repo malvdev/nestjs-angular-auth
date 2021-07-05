@@ -21,8 +21,10 @@
     "lib": ["es2018", "dom"],
     "paths": {
       "@env/*": ["src/environments/*"],
-      "@core/auth": ["src/app/core/auth/index.ts"],
-      "@shared/components": ["src/app/shared/components/index.ts"]
+      "@core": ["src/app/core/index.ts"],
+      "@core/*": ["src/app/core/*"],
+      "@shared": ["src/app/shared/index.ts"],
+      "@shared/*": ["src/app/shared/*"]
     }
   },
   "angularCompilerOptions": {

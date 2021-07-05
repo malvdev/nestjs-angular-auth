@@ -40,6 +40,7 @@
           formControlName="password"
         />
         <button
+          type="button"
           class="app-form__password-toggle"
           (click)="onToggleVisiblePassword()"
         >
@@ -96,6 +97,6 @@
       By signing up, you confirm that you've read and accepted our Terms of
       Service and Privacy Policy.
     </div>
-    <button [disabled]="!registerForm.valid">Continue</button>
+    <button type="submit" [disabled]="!registerForm.valid">Continue</button>
   </div>
 </form>

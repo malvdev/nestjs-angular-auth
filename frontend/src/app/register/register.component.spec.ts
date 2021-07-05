@@ -8,12 +8,12 @@ import { AuthService, AUTH_OPTIONS_TOKEN } from '@core/auth';
 import { AuthTemplateModule, FieldErrorModule } from '@shared/components';
 import { RegisterFormComponent } from './register-form';
 import { RegisterComponent } from './register.component';
-import { CredentialsService } from '../core/auth/services/credentials.service';
+import { CredentialsService } from '@core/auth';
 import {
   LocalStorageService,
   MemoryStorageService,
   SessionStorageService,
-} from '../core/storages';
+} from '@core/storages';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
