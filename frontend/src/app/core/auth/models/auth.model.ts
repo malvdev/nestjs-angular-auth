@@ -28,6 +28,7 @@ export interface ApiResponse {
 export interface AuthData {
   id?: string;
   accessToken: string;
+  refreshToken: string;
 }
 
 export interface UserData {

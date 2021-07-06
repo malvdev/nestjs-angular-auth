@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { Observable, of } from 'rxjs';
-import { finalize, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import {
   AuthData,
@@ -42,6 +42,10 @@ export class AuthService {
     return this._credentialsService.credentials?.accessToken;
   }
 
+  getRefreshToken(): string | undefined {
+    return this._credentialsService.credentials?.refreshToken;
+  }
+
   register(context: RegisterContext): Observable<AuthData> {
     return this._http
       .post<AuthData>(`${this.apiBase}/register`, {
@@ -68,19 +72,30 @@ export class AuthService {
       );
   }
 
+  refreshToken(): Observable<AuthData> {
+    return this._http
+      .post<AuthData>(
+        `${this.apiBase}/refresh-token`,
+        this._credentialsService.credentials as AuthData
+      )
+      .pipe(
+        map((data) => {
+          this._credentialsService.setCredentials(data, false);
+          return data;
+        })
+      );
+  }
+
   logout(): Observable<boolean> {
     this._credentialsService.setCredentials();
     return of(true);
   }
 
   forgotPassword(email: string): Observable<boolean> {
-    //return this._http.get<AuthData>(`${this.apiBase}/forgot/${email}`);
     return of(true);
   }
 
-  updatePassword(id: string, context: PasswordContext): Observable<AuthData> {
-    return this._http.put<AuthData>(`${this.apiBase}/update-password/${id}`, {
-      ...context,
-    });
+  updatePassword(id: string, context: PasswordContext): Observable<boolean> {
+    return of(true);
   }
 }

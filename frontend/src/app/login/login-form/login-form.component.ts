@@ -25,6 +25,7 @@ export class LoginFormComponent {
   loginForm: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, [Validators.required]),
+    remember: new FormControl(false),
   });
 
   get email(): AbstractControl | null {

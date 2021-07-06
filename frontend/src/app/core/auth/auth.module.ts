@@ -17,6 +17,7 @@ import {
   MemoryStorageService,
   SessionStorageService,
 } from '../storages';
+import { ErrorHandlerInterceptor } from './interceptors';
 
 @NgModule()
 export class AuthModule {
@@ -28,9 +29,7 @@ export class AuthModule {
     }
   }
 
-  static forRoot(
-    options: AuthOptions
-  ): ModuleWithProviders<AuthModule> {
+  static forRoot(options: AuthOptions): ModuleWithProviders<AuthModule> {
     return {
       ngModule: AuthModule,
       providers: [
@@ -40,6 +39,11 @@ export class AuthModule {
         MemoryStorageService,
         LocalStorageService,
         SessionStorageService,
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: ErrorHandlerInterceptor,
+          multi: true,
+        },
         {
           provide: HTTP_INTERCEPTORS,
           useClass: AuthInterceptor,

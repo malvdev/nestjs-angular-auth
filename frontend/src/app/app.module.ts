@@ -4,15 +4,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
-import { AuthModule } from '@core/auth';
-import { environment } from '@env/environment';
+import { CoreModule } from '@core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterModule } from './register';
 import { LoginModule } from './login';
 import { ForgotModule } from './forgot/forgot.module';
 import { ProfileModule } from './profile/profile.module';
-import { HeaderModule } from './shared/components/header/header.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,9 +18,7 @@ import { HeaderModule } from './shared/components/header/header.module';
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    AuthModule.forRoot({
-      apiBase: environment.serverUrl,
-    }),
+    CoreModule,
     ToastrModule.forRoot({
       timeOut: 5000,
     }),
@@ -30,9 +26,7 @@ import { HeaderModule } from './shared/components/header/header.module';
     LoginModule,
     ForgotModule,
     ProfileModule,
-    AuthModule,
     AppRoutingModule,
-    HeaderModule,
   ],
   bootstrap: [AppComponent],
 })

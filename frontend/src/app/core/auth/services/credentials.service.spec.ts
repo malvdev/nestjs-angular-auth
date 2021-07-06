@@ -25,11 +25,14 @@ describe('CredentialsService', () => {
 
   describe('setCredentials', () => {
     it('should authenticate user if credentials are set', () => {
-      credentialsService.setCredentials({ accessToken: 'tokenkey' });
+      credentialsService.setCredentials({
+        accessToken: 'accessToken',
+        refreshToken: 'refreshToken',
+      });
 
       expect(credentialsService.isAuth()).toBe(true);
       expect((<AuthData>credentialsService.credentials).accessToken).toBe(
-        'tokenkey'
+        'accessToken'
       );
     });
 

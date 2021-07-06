@@ -3,6 +3,7 @@ import { AuthData } from '../models/auth.model';
 export class MockCredentialsService {
   credentials: AuthData | null = {
     accessToken: 'accesstoken',
+    refreshToken: 'refreshToken',
   };
 
   isAuth(): boolean {

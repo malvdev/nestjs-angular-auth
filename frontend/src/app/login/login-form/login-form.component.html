@@ -31,6 +31,18 @@
       </app-field-error>
     </div>
 
+    <div class="app-form__field-wrapper">
+      <label class="app-form__field-label">
+        <input
+          class="app-form__field-checkbox"
+          type="checkbox"
+          name="remember"
+          formControlName="remember"
+        />
+        Remember me
+      </label>
+    </div>
+
     <button class="app-form__submit" [disabled]="!loginForm.valid">
       Log in
     </button>
