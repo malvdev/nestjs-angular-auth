@@ -18,7 +18,7 @@ npm run start:web
 
 ## Screenshots
 
-<img src="./assets/screenshots/login-page.png" width="400" />
-<img src="./assets/screenshots/register-page.png" width="400" />
-<img src="./assets/screenshots/forgot-page.png" width="400" />
-<img src="./assets/screenshots/profile-page.png" width="400" />
+<img src="./assets/screenshots/login-page.png" />
+<img src="./assets/screenshots/register-page.png" />
+<img src="./assets/screenshots/forgot-page.png" />
+<img src="./assets/screenshots/profile-page.png" />
