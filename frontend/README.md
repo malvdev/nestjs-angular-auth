@@ -1,5 +1,7 @@
 # Frontend
 
+Authentication app powered by Angular.
+
 ## Installation
 
 ```bash
@@ -13,6 +15,7 @@ npm run start
 ```
 
 ```bash
+# production
 npm run build
 ```
 
