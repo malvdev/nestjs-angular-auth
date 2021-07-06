@@ -1,4 +1,16 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import {
+  AuthService,
+  AUTH_OPTIONS_TOKEN,
+  CredentialsService,
+  LocalStorageService,
+  MemoryStorageService,
+  SessionStorageService,
+} from '@core';
+import { DetailsCardModule, HeaderModule } from '@shared';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 import { ProfileComponent } from './profile.component';
 
@@ -8,7 +20,23 @@ describe('ProfileComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        HeaderModule,
+        DetailsCardModule,
+        ToastrModule.forRoot(),
+      ],
       declarations: [ProfileComponent],
+      providers: [
+        AuthService,
+        ToastrService,
+        CredentialsService,
+        LocalStorageService,
+        SessionStorageService,
+        MemoryStorageService,
+        { provide: AUTH_OPTIONS_TOKEN, useValue: { apiBase: '' } },
+      ],
     }).compileComponents();
   });
 

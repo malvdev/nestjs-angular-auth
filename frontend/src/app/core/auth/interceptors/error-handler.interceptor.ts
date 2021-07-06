@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
-import { environment } from '@env/environment';
+import { environment } from '../../../../environments/environment';
 
 @Injectable()
 export class ErrorHandlerInterceptor implements HttpInterceptor {

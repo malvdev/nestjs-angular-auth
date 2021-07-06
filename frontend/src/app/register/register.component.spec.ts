@@ -1,4 +1,3 @@
-import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -14,6 +13,7 @@ import {
   MemoryStorageService,
   SessionStorageService,
 } from '@core/storages';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -23,7 +23,7 @@ describe('RegisterComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [RegisterComponent, RegisterFormComponent],
       imports: [
-        HttpClientModule,
+        HttpClientTestingModule,
         RouterTestingModule,
         ReactiveFormsModule,
         AuthTemplateModule,

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { environment } from '@env/environment';
+import { environment } from '../../environments/environment';
 import { AuthModule } from './auth';
 
 @NgModule({

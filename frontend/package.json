@@ -45,9 +45,6 @@
       "<rootDir>/dist/"
     ],
     "moduleNameMapper": {
-      "@env/*": [
-        "<rootDir>/src/environments/*"
-      ],
       "@core": [
         "<rootDir>/src/app/core/index.ts"
       ],

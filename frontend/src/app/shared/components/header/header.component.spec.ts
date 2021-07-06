@@ -1,15 +1,15 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthService } from '@core/auth';
-import { CredentialsService } from '@core/auth/services';
+
 import {
   LocalStorageService,
   MemoryStorageService,
   SessionStorageService,
-} from 'src/app/core/storages';
+} from '@core';
+import { AuthService, AUTH_OPTIONS_TOKEN } from '@core/auth';
+import { CredentialsService } from '@core/auth/services';
 import { LogoModule } from '../logo';
-
 import { HeaderComponent } from './header.component';
 
 describe('HeaderComponent', () => {
@@ -18,7 +18,7 @@ describe('HeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [HttpClientModule, RouterTestingModule, LogoModule],
+      imports: [HttpClientTestingModule, RouterTestingModule, LogoModule],
       declarations: [HeaderComponent],
       providers: [
         AuthService,
@@ -26,6 +26,7 @@ describe('HeaderComponent', () => {
         LocalStorageService,
         SessionStorageService,
         MemoryStorageService,
+        { provide: AUTH_OPTIONS_TOKEN, useValue: { apiBase: '' } },
       ],
     }).compileComponents();
   });
