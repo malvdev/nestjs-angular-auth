@@ -22,7 +22,12 @@ async function bootstrap() {
   app.useLogger(logger);
 
   app.useGlobalPipes(new ValidationPipe({ transform: true }));
-  app.enableCors();
+
+  app.enableCors({
+    origin: process.env.CORS_ORIGIN || true,
+    credentials: true,
+  });
+
   await app.listen(3000);
 }
 bootstrap();
