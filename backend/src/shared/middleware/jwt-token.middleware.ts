@@ -1,4 +1,9 @@
-import { Injectable, NestMiddleware } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  NestMiddleware,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
 import * as jwt from 'jsonwebtoken';
@@ -18,15 +23,19 @@ export class JwtTokenMiddleware implements NestMiddleware {
     const token: string = this.getBearerToken(req);
 
     if (token) {
-      const isTokenValid: boolean = this.verifyToken(token);
+      try {
+        const isTokenValid = this.verifyToken(token);
 
-      if (isTokenValid) {
-        const payload: IPayload = this.getTokenPayload(token);
-        req.locals.user = {
-          id: payload.userId,
-          email: payload.email,
-          roles: payload.roles,
-        };
+        if (isTokenValid) {
+          const payload: IPayload = this.getTokenPayload(token);
+          req.locals.user = {
+            id: payload.userId,
+            email: payload.email,
+            roles: payload.roles,
+          };
+        }
+      } catch (err) {
+        throw new HttpException('Token: jwt expired', HttpStatus.UNAUTHORIZED);
       }
     }
 

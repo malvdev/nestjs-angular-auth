@@ -38,6 +38,7 @@ export class AppModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(JwtTokenMiddleware)
+      .exclude('api/auth/(.*)')
       .forRoutes({ path: '*', method: RequestMethod.ALL });
   }
 }

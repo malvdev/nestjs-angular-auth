@@ -4,6 +4,7 @@ import {
   HttpInterceptor,
   HttpHandler,
   HttpRequest,
+  HttpStatusCode,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -29,7 +30,10 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
       console.error('Request error', response);
     }
 
-    if (response.error.message === 'Token: jwt expired') {
+    if (
+      response.error.statusCode === HttpStatusCode.Unauthorized &&
+      response.error.message === 'Token: jwt expired'
+    ) {
       // TODO: need to refresh token
       this._router.navigate(['/auth/login']);
     }
