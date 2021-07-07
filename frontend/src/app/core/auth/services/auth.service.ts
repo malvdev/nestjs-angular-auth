@@ -48,7 +48,7 @@ export class AuthService {
 
   register(context: RegisterContext): Observable<AuthData> {
     return this._http
-      .post<AuthData>(`${this.apiBase}/register`, {
+      .post<AuthData>(`${this.apiBase}/auth/register`, {
         ...context,
       })
       .pipe(
@@ -61,7 +61,7 @@ export class AuthService {
 
   login(context: LoginContext): Observable<AuthData> {
     return this._http
-      .post<AuthData>(`${this.apiBase}/login`, {
+      .post<AuthData>(`${this.apiBase}/auth/login`, {
         ...context,
       })
       .pipe(
@@ -75,7 +75,7 @@ export class AuthService {
   refreshToken(): Observable<AuthData> {
     return this._http
       .post<AuthData>(
-        `${this.apiBase}/refresh-token`,
+        `${this.apiBase}/auth/refresh-token`,
         this._credentialsService.credentials as AuthData
       )
       .pipe(

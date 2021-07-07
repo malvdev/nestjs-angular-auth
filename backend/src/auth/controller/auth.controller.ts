@@ -13,7 +13,7 @@ import { Logger } from 'winston';
 import { CreateUserDto, User } from '@user';
 import { AuthService, TokenDto, LoginCredential, RefreshTokenDto } from '@auth';
 
-@Controller()
+@Controller('api/auth')
 export class AuthController {
   constructor(
     @Inject('winston')

@@ -14,7 +14,7 @@ import { IAuthUser } from '@user/interfaces';
 import { User } from '@user/entity/user.entity';
 import { UserService } from '@user/service/user.service';
 
-@Controller('user')
+@Controller('api/user')
 export class UserController {
   constructor(private readonly _service: UserService) {}
 
