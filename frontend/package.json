@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --proxy-config proxy.conf.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "jest",
@@ -30,6 +30,8 @@
     "@angular/compiler-cli": "~12.0.5",
     "@types/jest": "^26.0.23",
     "@types/node": "^12.11.1",
+    "angular-cli-ghpages": "^1.0.0-rc.2",
+    "https-proxy-agent": "^5.0.0",
     "jest": "^27.0.6",
     "jest-preset-angular": "^9.0.4",
     "karma-coverage": "~2.0.3",
