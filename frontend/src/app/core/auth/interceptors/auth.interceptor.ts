@@ -8,6 +8,7 @@ import {
 import { Observable } from 'rxjs';
 
 import { AuthService } from '../services/auth.service';
+import { environment } from '../../../../environments/environment';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
@@ -18,7 +19,9 @@ export class AuthInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
     const authToken = this._authService.getAuthToken();
-    if (authToken) {
+    const isApiUrl = req.url.startsWith(environment.serverUrl);
+
+    if (authToken && isApiUrl) {
       const authReq = req.clone({
         headers: req.headers.set('Authorization', `Bearer ${authToken}`),
       });
