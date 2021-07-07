@@ -16,10 +16,6 @@ import { JwtTokenMiddleware, LoggerInterceptor } from './shared';
 @Module({
   imports: [
     TypeOrmModule.forRoot(ormConfig),
-    JwtModule.register({
-      secret: process.env.JWT_SECRET,
-      signOptions: { expiresIn: '60s' },
-    }),
     WinstonModule.forRoot(loggerConf),
     AuthModule,
     UserModule,
