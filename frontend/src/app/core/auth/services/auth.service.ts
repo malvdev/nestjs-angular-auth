@@ -9,7 +9,7 @@ import {
   AuthOptions,
   LoginContext,
   RegisterContext,
-  PasswordContext,
+  ForgotPasswordContext,
 } from '../models/auth.model';
 import { CredentialsService } from './credentials.service';
 import { AUTH_OPTIONS_TOKEN } from '../tokens/auth-options.token';
@@ -91,11 +91,9 @@ export class AuthService {
     return of(true);
   }
 
-  forgotPassword(email: string): Observable<boolean> {
-    return of(true);
-  }
-
-  updatePassword(id: string, context: PasswordContext): Observable<boolean> {
-    return of(true);
+  forgotPassword(context: ForgotPasswordContext): Observable<any> {
+    return this._http.post<any>(`${this.apiBase}/auth/forgot-password`, {
+      ...context,
+    });
   }
 }

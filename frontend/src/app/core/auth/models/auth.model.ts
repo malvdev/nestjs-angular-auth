@@ -11,12 +11,9 @@ export interface RegisterContext {
   remember?: boolean;
 }
 
-export interface PasswordContext {
-  id: string;
-  password: string;
-  passwordNew: string;
+export interface ForgotPasswordContext {
+  email: string;
 }
-
 export interface ApiResponse {
   status?: string;
   success?: boolean;

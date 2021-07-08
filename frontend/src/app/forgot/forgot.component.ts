@@ -2,7 +2,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 
-import { AuthService } from '@core';
+import { AuthService, ForgotPasswordContext } from '@core';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
@@ -18,13 +18,10 @@ export class ForgotComponent {
     private readonly _toastr: ToastrService
   ) {}
 
-  onSubmit(form: any): void {
+  onSubmit(form: ForgotPasswordContext): void {
     this._authService.forgotPassword(form).subscribe(
       (res) => {
-        this._toastr.success(
-          'Forgot Password: Send Mail successfully!',
-          'Success'
-        );
+        this._toastr.success(res.message, 'Success');
         this._router.navigate(['/login'], { replaceUrl: true });
       },
       ({ error }: HttpErrorResponse) => {
