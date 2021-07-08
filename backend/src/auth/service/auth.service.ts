@@ -115,7 +115,6 @@ export class AuthService {
 
     return Promise.resolve({
       message: 'New password sent to your email',
-      passwordRand, // TODO: only develop mode
     });
   }
 
