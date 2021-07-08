@@ -9,10 +9,8 @@ async function bootstrap() {
 
   const options = new DocumentBuilder()
     .setTitle('Nestjs auth')
-    .setDescription('Jwt project started with nest js')
     .setVersion('1.0')
     .addBearerAuth()
-    .addTag('jwt')
     .build();
 
   const document = SwaggerModule.createDocument(app, options);
