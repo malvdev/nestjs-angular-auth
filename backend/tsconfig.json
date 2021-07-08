@@ -19,5 +19,6 @@
       "@user": ["src/user/index.ts"],
       "@user/*": ["src/user/*"]
     }
-  }
+  },
+  "exclude": ["node_modules", "dist"]
 }

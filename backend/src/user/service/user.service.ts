@@ -32,6 +32,14 @@ export class UserService {
     }
   }
 
+  async updateUser(userData: CreateUserDto): Promise<any> {
+    try {
+      return await this._userRepository.save(userData);
+    } catch (error) {
+      throw error;
+    }
+  }
+
   getUserById(id: number): Promise<User> {
     return this._userRepository.findOne(id);
   }

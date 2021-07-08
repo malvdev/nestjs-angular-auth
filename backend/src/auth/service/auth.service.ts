@@ -1,11 +1,14 @@
 import { Injectable, Inject, forwardRef } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import * as bcrypt from 'bcryptjs';
 
 import { User, CreateUserDto, UserService } from '@user';
 import { LoginCredential } from '@auth/dto/login-credential.dto';
 import { TokenDto } from '@auth/dto/token.dto';
 import { RefreshTokenDto } from '@auth/dto/refresh-token.dto';
 import { IJwtPayload } from '@auth/interfaces/jwt-payload';
+import { ForgotPasswordDto } from '@auth/dto/forgot-password.dto';
+import { MailService } from '@shared/services/mail.service';
 
 @Injectable()
 export class AuthService {
@@ -13,6 +16,7 @@ export class AuthService {
     @Inject(forwardRef(() => UserService))
     private readonly _userService: UserService,
     private readonly _jwtService: JwtService,
+    private readonly _mailService: MailService,
   ) {}
 
   async registerUser(userData: CreateUserDto): Promise<User> {
@@ -23,7 +27,7 @@ export class AuthService {
     const user = await this._userService.getUserByEmail(credential.email);
 
     if (!user) {
-      throw new Error('Invalid credentials');
+      throw new Error('Invalid username or password');
     }
 
     const isMatched = await this._userService.checkPassword(
@@ -32,7 +36,7 @@ export class AuthService {
     );
 
     if (!isMatched) {
-      throw new Error('Invalid credentials');
+      throw new Error('invalid username or password');
     }
 
     if (!user.isActive) {
@@ -91,5 +95,29 @@ export class AuthService {
     const refreshToken = this._jwtService.sign(refreshPayload);
 
     return { accessToken, refreshToken };
+  }
+
+  async forgotPassword({ email }: ForgotPasswordDto): Promise<any> {
+    const userUpdate = await this._userService.getUserByEmail(email);
+
+    if (!userUpdate) {
+      throw new Error(`Email ${email} not found`);
+    }
+
+    const passwordRand = Math.random().toString(36).slice(-8);
+    userUpdate.password = bcrypt.hashSync(passwordRand, 8);
+
+    try {
+      this._mailService.sendMailForgotPassword(userUpdate.email, passwordRand);
+    } catch (error) {
+      throw new Error(`There was an error sending mail`);
+    }
+
+    await this._userService.updateUser(userUpdate);
+
+    return Promise.resolve({
+      message: 'New password sent to your email',
+      passwordRand,
+    });
   }
 }
