@@ -8,7 +8,6 @@ import { TokenDto } from '@auth/dto/token.dto';
 import { RefreshTokenDto } from '@auth/dto/refresh-token.dto';
 import { IJwtPayload } from '@auth/interfaces/jwt-payload';
 import { ForgotPasswordDto } from '@auth/dto/forgot-password.dto';
-import { MailService } from '@shared/services/mail.service';
 
 @Injectable()
 export class AuthService {
@@ -16,7 +15,6 @@ export class AuthService {
     @Inject(forwardRef(() => UserService))
     private readonly _userService: UserService,
     private readonly _jwtService: JwtService,
-    private readonly _mailService: MailService,
   ) {}
 
   async registerUser(userData: CreateUserDto): Promise<User> {
@@ -36,7 +34,7 @@ export class AuthService {
     );
 
     if (!isMatched) {
-      throw new Error('invalid username or password');
+      throw new Error('Invalid username or password');
     }
 
     if (!user.isActive) {
@@ -108,7 +106,7 @@ export class AuthService {
     userUpdate.password = bcrypt.hashSync(passwordRand, 8);
 
     try {
-      this._mailService.sendMailForgotPassword(userUpdate.email, passwordRand);
+      this.sendMailForgotPassword(userUpdate.email, passwordRand);
     } catch (error) {
       throw new Error(`There was an error sending mail`);
     }
@@ -119,5 +117,9 @@ export class AuthService {
       message: 'New password sent to your email',
       passwordRand,
     });
+  }
+
+  sendMailForgotPassword(email: string, password: string): void {
+    // Send mail
   }
 }

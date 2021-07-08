@@ -101,7 +101,7 @@ describe('AuthService', () => {
         await service.login(mockCredential);
         expect(true).toBeFalsy();
       } catch (error) {
-        expect(error.message).toBe('Invalid credentials');
+        expect(error.message).toBe('Invalid username or password');
       }
     });
 
@@ -114,7 +114,7 @@ describe('AuthService', () => {
         await service.login(mockCredential);
         expect(true).toBeFalsy();
       } catch (error) {
-        expect(error.message).toBe('Invalid credentials');
+        expect(error.message).toBe('Invalid username or password');
       }
     });
 
