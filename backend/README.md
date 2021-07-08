@@ -15,7 +15,7 @@ $ npm install
 ## Running the api
 
 ```bash
-$ docker-compose up --build
+$ docker-compose up -d
 ```
 
 ```bash
