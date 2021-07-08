@@ -115,11 +115,11 @@ export class AuthService {
 
     return Promise.resolve({
       message: 'New password sent to your email',
-      passwordRand,
+      passwordRand, // TODO: only develop mode
     });
   }
 
   sendMailForgotPassword(email: string, password: string): void {
-    // Send mail
+    // TODO: Send mail
   }
 }
