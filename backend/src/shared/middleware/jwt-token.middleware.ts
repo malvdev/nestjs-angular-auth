@@ -1,3 +1,4 @@
+import { IJwtPayload } from '@auth/interfaces/jwt-payload';
 import {
   HttpException,
   HttpStatus,
@@ -7,10 +8,6 @@ import {
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
 import * as jwt from 'jsonwebtoken';
-
-export interface IPayload {
-  [key: string]: string | number;
-}
 
 @Injectable()
 export class JwtTokenMiddleware implements NestMiddleware {
@@ -27,7 +24,7 @@ export class JwtTokenMiddleware implements NestMiddleware {
         const isTokenValid = this.verifyToken(token);
 
         if (isTokenValid) {
-          const payload: IPayload = this.getTokenPayload(token);
+          const payload: IJwtPayload = this.getTokenPayload(token);
           req.locals.user = {
             id: payload.userId,
             email: payload.email,
@@ -42,7 +39,7 @@ export class JwtTokenMiddleware implements NestMiddleware {
     next();
   }
 
-  private getTokenPayload(token: string): IPayload {
+  private getTokenPayload(token: string): IJwtPayload {
     const decodedToken: any = jwt.decode(token, { complete: true });
     return decodedToken.payload;
   }

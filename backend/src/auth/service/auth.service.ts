@@ -5,6 +5,7 @@ import { User, CreateUserDto, UserService } from '@user';
 import { LoginCredential } from '@auth/dto/login-credential.dto';
 import { TokenDto } from '@auth/dto/token.dto';
 import { RefreshTokenDto } from '@auth/dto/refresh-token.dto';
+import { IJwtPayload } from '@auth/interfaces/jwt-payload';
 
 @Injectable()
 export class AuthService {
@@ -43,7 +44,7 @@ export class AuthService {
   }
 
   async refreshToken(token: RefreshTokenDto): Promise<TokenDto> {
-    let payload: { [key: string]: any };
+    let payload: IJwtPayload;
 
     try {
       payload = this._jwtService.verify(token.refreshToken);
@@ -72,19 +73,22 @@ export class AuthService {
   }
 
   private generateAuthToken(user: User): TokenDto {
-    const accessToken = this._jwtService.sign({
+    const accessPayload: IJwtPayload = {
       sub: () => user.email,
       type: 'access',
       email: user.email,
       roles: user.roles,
       userId: user.id,
-    });
+    };
 
-    const refreshToken = this._jwtService.sign({
+    const refreshPayload: IJwtPayload = {
       sub: () => user.email,
       type: 'refresh',
       userId: user.id,
-    });
+    };
+
+    const accessToken = this._jwtService.sign(accessPayload);
+    const refreshToken = this._jwtService.sign(refreshPayload);
 
     return { accessToken, refreshToken };
   }
