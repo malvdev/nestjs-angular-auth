@@ -47,16 +47,9 @@ export class AuthService {
   }
 
   register(context: RegisterContext): Observable<AuthData> {
-    return this._http
-      .post<AuthData>(`${this.apiBase}/auth/register`, {
-        ...context,
-      })
-      .pipe(
-        map((data) => {
-          this._credentialsService.setCredentials(data, context.remember);
-          return data;
-        })
-      );
+    return this._http.post<AuthData>(`${this.apiBase}/auth/register`, {
+      ...context,
+    });
   }
 
   login(context: LoginContext): Observable<AuthData> {
