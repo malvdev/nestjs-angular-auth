@@ -25,7 +25,7 @@ export class UserService {
       return this._userRepository.save(user);
     } catch (error) {
       if (error.code === 'ER_DUP_ENTRY') {
-        throw new Error(`User already exists with email ${user.name}`);
+        throw new Error(`User already exists with email ${user.email}`);
       }
 
       throw error;
