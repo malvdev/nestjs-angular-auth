@@ -10,6 +10,8 @@ import {
   LoginContext,
   RegisterContext,
   ForgotPasswordContext,
+  ForgotPasswordResponse,
+  UserData,
 } from '../models/auth.model';
 import { CredentialsService } from './credentials.service';
 import { AUTH_OPTIONS_TOKEN } from '../tokens/auth-options.token';
@@ -46,8 +48,8 @@ export class AuthService {
     return this._credentialsService.credentials?.refreshToken;
   }
 
-  register(context: RegisterContext): Observable<AuthData> {
-    return this._http.post<AuthData>(`${this.apiBase}/auth/register`, {
+  register(context: RegisterContext): Observable<UserData> {
+    return this._http.post<UserData>(`${this.apiBase}/auth/register`, {
       ...context,
     });
   }
@@ -84,9 +86,14 @@ export class AuthService {
     return of(true);
   }
 
-  forgotPassword(context: ForgotPasswordContext): Observable<any> {
-    return this._http.post<any>(`${this.apiBase}/auth/forgot-password`, {
-      ...context,
-    });
+  forgotPassword(
+    context: ForgotPasswordContext
+  ): Observable<ForgotPasswordResponse> {
+    return this._http.post<ForgotPasswordResponse>(
+      `${this.apiBase}/auth/forgot-password`,
+      {
+        ...context,
+      }
+    );
   }
 }

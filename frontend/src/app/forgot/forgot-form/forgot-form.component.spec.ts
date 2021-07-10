@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ForgotPasswordContext } from '@core';
 
 import { FieldErrorModule } from '@shared/components';
 import { ForgotFormComponent } from './forgot-form.component';
@@ -52,7 +53,7 @@ describe('ForgotFormComponent', () => {
     component.forgotForm.get('email')?.setValue('test@test.com');
     expect(component.forgotForm.valid).toBeTruthy();
 
-    let form: any | undefined;
+    let form: ForgotPasswordContext | undefined;
     component.formSubmit.subscribe((value) => (form = value));
     component.onSubmit();
 

@@ -11,6 +11,8 @@ import {
   Validators,
 } from '@angular/forms';
 
+import { ForgotPasswordContext } from '@core';
+
 @Component({
   selector: 'app-forgot-form',
   templateUrl: './forgot-form.component.html',
@@ -18,7 +20,8 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ForgotFormComponent {
-  @Output() formSubmit = new EventEmitter<any>();
+  @Output()
+  formSubmit = new EventEmitter<ForgotPasswordContext>();
 
   forgotForm: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
@@ -30,7 +33,7 @@ export class ForgotFormComponent {
 
   onSubmit(): void {
     if (this.forgotForm.valid) {
-      this.formSubmit.emit(this.forgotForm.value as any);
+      this.formSubmit.emit(this.forgotForm.value as ForgotPasswordContext);
     }
   }
 }

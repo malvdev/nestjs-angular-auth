@@ -14,26 +14,25 @@ export interface RegisterContext {
 export interface ForgotPasswordContext {
   email: string;
 }
-export interface ApiResponse {
-  status?: string;
-  success?: boolean;
-  statusText?: string;
-  data?: UserData;
-  errors?: string[];
+
+export interface ForgotPasswordResponse {
+  message: string;
 }
 
 export interface AuthData {
-  id?: string;
   accessToken: string;
   refreshToken: string;
 }
+
+export type UserRole = 'user' | 'admin';
 
 export interface UserData {
   id: number;
   name: string;
   email: string;
-  isActive?: string;
-  roles?: string[];
+  password?: string;
+  isActive?: boolean;
+  roles?: UserRole[];
   createdAt?: string;
   updatedAt?: string;
 }
