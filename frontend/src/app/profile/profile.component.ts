@@ -13,6 +13,7 @@ import { ProfileService } from '@shared';
 })
 export class ProfileComponent implements OnInit {
   profile: UserData;
+
   constructor(
     private readonly _router: Router,
     private readonly _authService: AuthService,
