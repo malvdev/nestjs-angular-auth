@@ -6,14 +6,18 @@ import {
   NestMiddleware,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { Request } from 'express';
+import { NextFunction, Response, Request } from 'express';
 import * as jwt from 'jsonwebtoken';
+
+export interface IJwtTokenRequest extends Request {
+  locals: { [key: string]: any };
+}
 
 @Injectable()
 export class JwtTokenMiddleware implements NestMiddleware {
   constructor(protected readonly _jwtService: JwtService) {}
 
-  async use(req: any, res: any, next: () => void) {
+  async use(req: IJwtTokenRequest, res: Response, next: NextFunction) {
     req.locals = req.locals || {};
     req.locals.user = null;
 
