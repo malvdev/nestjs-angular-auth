@@ -3,6 +3,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterContext } from '@core';
 
 import { FieldErrorModule } from '@shared/components';
+
 import { RegisterFormComponent } from './register-form.component';
 
 describe('RegisterFormComponent', () => {

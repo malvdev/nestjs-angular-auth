@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { LoginContext } from '@core';
 
+import { LoginContext } from '@core';
 import { FieldErrorModule } from '@shared/components';
+
 import { LoginFormComponent } from './login-form.component';
 
 describe('LoginFormComponent', () => {

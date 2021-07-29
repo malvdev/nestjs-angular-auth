@@ -1,9 +1,9 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { HttpErrorResponse } from '@angular/common/http';
 
 import { AuthService, ForgotPasswordContext } from '@core';
-import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-forgot',

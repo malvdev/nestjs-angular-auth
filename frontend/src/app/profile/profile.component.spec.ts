@@ -1,6 +1,8 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+
 import {
   AuthService,
   AUTH_OPTIONS_TOKEN,
@@ -10,7 +12,6 @@ import {
   SessionStorageService,
 } from '@core';
 import { DetailsCardModule, HeaderModule } from '@shared';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 import { ProfileComponent } from './profile.component';
 

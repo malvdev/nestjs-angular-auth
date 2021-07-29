@@ -2,18 +2,19 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { AuthService, AUTH_OPTIONS_TOKEN } from '@core/auth';
 import { AuthTemplateModule, FieldErrorModule } from '@shared/components';
-import { RegisterFormComponent } from './register-form';
-import { RegisterComponent } from './register.component';
 import { CredentialsService } from '@core/auth';
 import {
   LocalStorageService,
   MemoryStorageService,
   SessionStorageService,
 } from '@core/storages';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+
+import { RegisterFormComponent } from './register-form';
+import { RegisterComponent } from './register.component';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;

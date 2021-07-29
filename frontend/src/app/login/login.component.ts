@@ -1,8 +1,9 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService, LoginContext } from '@core/auth';
 import { ToastrService } from 'ngx-toastr';
+
+import { AuthService, LoginContext } from '@core/auth';
 
 @Component({
   selector: 'app-login',

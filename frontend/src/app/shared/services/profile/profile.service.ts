@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { environment } from '../../../../environments/environment';
+
 import { UserData } from '@core';
 
 @Injectable({
@@ -11,7 +12,7 @@ import { UserData } from '@core';
 export class ProfileService {
   private readonly _serverUrl: string = environment.serverUrl;
 
-  constructor(protected _http: HttpClient) {}
+  constructor(private readonly _http: HttpClient) {}
 
   me(): Observable<UserData> {
     return this._http.get<UserData>(this._serverUrl + '/user/me');

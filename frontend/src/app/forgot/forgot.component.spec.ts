@@ -2,6 +2,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ToastrModule, ToastrService } from 'ngx-toastr';
+
 import {
   AuthService,
   AUTH_OPTIONS_TOKEN,
@@ -10,9 +12,8 @@ import {
   MemoryStorageService,
   SessionStorageService,
 } from '@core';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
-
 import { AuthTemplateModule, FieldErrorModule } from '@shared/components';
+
 import { ForgotFormComponent } from './forgot-form';
 import { ForgotComponent } from './forgot.component';
 
