@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
-import { AuthTemplateModule, FieldErrorModule } from '@shared/components';
+import { AuthTemplateModule, FormFieldModule } from '@shared/components';
 
 import { RegisterRoutingModule } from './register-routing.module';
 import { RegisterComponent } from './register.component';
@@ -15,7 +15,7 @@ import { RegisterFormComponent } from './register-form';
     ReactiveFormsModule,
     RegisterRoutingModule,
     AuthTemplateModule,
-    FieldErrorModule,
+    FormFieldModule,
   ],
   exports: [RegisterComponent],
 })
