@@ -12,7 +12,8 @@ import {
   MemoryStorageService,
   SessionStorageService,
 } from '@core';
-import { AuthTemplateModule, FieldErrorModule } from '@shared/components';
+import { AuthTemplateModule, FormFieldModule } from '@shared/components';
+import { DestroyService } from '@shared/services';
 
 import { ForgotFormComponent } from './forgot-form';
 import { ForgotComponent } from './forgot.component';
@@ -29,10 +30,11 @@ describe('ForgotComponent', () => {
         RouterTestingModule,
         ReactiveFormsModule,
         AuthTemplateModule,
-        FieldErrorModule,
+        FormFieldModule,
         ToastrModule.forRoot(),
       ],
       providers: [
+        DestroyService,
         AuthService,
         ToastrService,
         CredentialsService,
