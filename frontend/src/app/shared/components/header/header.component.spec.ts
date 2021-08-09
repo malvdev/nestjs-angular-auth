@@ -9,6 +9,8 @@ import {
 } from '@core';
 import { AuthService, AUTH_OPTIONS_TOKEN } from '@core/auth';
 import { CredentialsService } from '@core/auth/services';
+import { DestroyService } from '@shared/services';
+
 import { LogoModule } from '../logo';
 import { HeaderComponent } from './header.component';
 
@@ -21,6 +23,7 @@ describe('HeaderComponent', () => {
       imports: [HttpClientTestingModule, RouterTestingModule, LogoModule],
       declarations: [HeaderComponent],
       providers: [
+        DestroyService,
         AuthService,
         CredentialsService,
         LocalStorageService,
