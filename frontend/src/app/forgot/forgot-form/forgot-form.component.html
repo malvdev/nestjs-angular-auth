@@ -1,6 +1,6 @@
 <form class="app-form" [formGroup]="forgotForm" (ngSubmit)="onSubmit()">
   <div class="app-form__controls">
-    <div class="app-form__field-wrapper">
+    <app-form-field>
       <label for="email">We'll send a recovery link to</label>
       <input
         id="email"
@@ -13,10 +13,10 @@
         autocomplete="username"
         formControlName="email"
       />
-      <app-field-error *ngIf="email && email.touched && email.invalid">
-        Email is invalid.
-      </app-field-error>
-    </div>
+      <app-form-field-error *ngIf="email && email.touched && email.invalid">
+        Invalid email.
+      </app-form-field-error>
+    </app-form-field>
 
     <button [disabled]="!forgotForm.valid">Send recovery link</button>
   </div>
