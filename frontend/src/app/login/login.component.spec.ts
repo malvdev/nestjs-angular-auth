@@ -5,13 +5,14 @@ import { AuthService, AUTH_OPTIONS_TOKEN } from '@core/auth';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ToastrModule } from 'ngx-toastr';
 
-import { AuthTemplateModule, FieldErrorModule } from '@shared/components';
+import { AuthTemplateModule, FormFieldModule } from '@shared/components';
 import { CredentialsService } from '@core/auth/services';
 import {
   LocalStorageService,
   MemoryStorageService,
   SessionStorageService,
 } from '@core/storages';
+import { DestroyService } from '@shared';
 
 import { LoginFormComponent } from './login-form';
 import { LoginComponent } from './login.component';
@@ -28,10 +29,11 @@ describe('LoginComponent', () => {
         RouterTestingModule,
         ReactiveFormsModule,
         AuthTemplateModule,
-        FieldErrorModule,
+        FormFieldModule,
         ToastrModule.forRoot(),
       ],
       providers: [
+        DestroyService,
         AuthService,
         CredentialsService,
         LocalStorageService,
