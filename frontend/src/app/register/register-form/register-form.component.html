@@ -1,6 +1,6 @@
 <form class="app-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
   <div class="app-form__controls">
-    <div class="app-form__field-wrapper">
+    <app-form-field>
       <label for="form-email">Email</label>
       <input
         id="form-email"
@@ -12,11 +12,11 @@
         autocomplete="username email"
         formControlName="email"
       />
-      <app-field-error *ngIf="email && email.invalid && email.touched">
-        Email is invalid.
-      </app-field-error>
-    </div>
-    <div class="app-form__field-wrapper">
+      <app-form-field-error *ngIf="email && email.invalid && email.touched">
+        Invalid email.
+      </app-form-field-error>
+    </app-form-field>
+    <app-form-field>
       <label for="form-name">Username</label>
       <input
         id="form-name"
@@ -27,8 +27,11 @@
         spellcheck="true"
         formControlName="name"
       />
-    </div>
-    <div class="app-form__field-wrapper">
+      <app-form-field-error *ngIf="name && name.invalid && name.touched">
+        Invalid username.
+      </app-form-field-error>
+    </app-form-field>
+    <app-form-field>
       <label for="form-password">Password</label>
       <div class="app-form__toggle-wrapper">
         <input
@@ -81,7 +84,7 @@
         </button>
       </div>
 
-      <app-field-error
+      <app-form-field-error
         *ngIf="
           password &&
           password.invalid &&
@@ -90,13 +93,15 @@
         "
       >
         Password must be at least
-        {{ password.errors?.minlength?.requiredLength }} characters long
-      </app-field-error>
-    </div>
+        {{ password.errors?.minlength?.requiredLength }} characters long.
+      </app-form-field-error>
+    </app-form-field>
     <div class="app-form__notes">
       By signing up, you confirm that you've read and accepted our Terms of
       Service and Privacy Policy.
     </div>
-    <button type="submit" [disabled]="!registerForm.valid">Continue</button>
+    <button type="submit" [disabled]="registerForm.invalid || isLoading">
+      {{ isLoading ? "Waiting..." : "Continue" }}
+    </button>
   </div>
 </form>
