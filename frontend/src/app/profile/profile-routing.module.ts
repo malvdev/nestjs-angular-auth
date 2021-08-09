@@ -8,7 +8,8 @@ import { ProfileComponent } from './profile.component';
 
 const routes: Routes = [
   {
-    path: 'profile',
+    path: '',
+    pathMatch: 'full',
     component: ProfileComponent,
     canActivate: [AuthGuard],
     resolve: {
