@@ -17,6 +17,5 @@ import { RegisterFormComponent } from './register-form';
     AuthTemplateModule,
     FormFieldModule,
   ],
-  exports: [RegisterComponent],
 })
 export class RegisterModule {}

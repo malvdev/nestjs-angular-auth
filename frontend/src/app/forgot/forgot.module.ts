@@ -17,6 +17,5 @@ import { ForgotFormComponent } from './forgot-form';
     AuthTemplateModule,
     FormFieldModule,
   ],
-  exports: [ForgotComponent],
 })
 export class ForgotModule {}

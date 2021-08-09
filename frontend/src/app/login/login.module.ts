@@ -17,6 +17,5 @@ import { LoginFormComponent } from './login-form/login-form.component';
     AuthTemplateModule,
     FormFieldModule,
   ],
-  exports: [LoginComponent],
 })
 export class LoginModule {}
