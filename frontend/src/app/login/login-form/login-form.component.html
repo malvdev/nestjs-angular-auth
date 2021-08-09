@@ -1,6 +1,6 @@
 <form class="app-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
   <div class="app-form__controls">
-    <div class="app-form__field-wrapper">
+    <app-form-field>
       <label for="form-email">Email</label>
       <input
         id="form-email"
@@ -12,12 +12,12 @@
         autocomplete="username"
         formControlName="email"
       />
-      <app-field-error *ngIf="email && email.touched && email.invalid">
-        Email is invalid.
-      </app-field-error>
-    </div>
+      <app-form-field-error *ngIf="email && email.touched && email.invalid">
+        Invalid email.
+      </app-form-field-error>
+    </app-form-field>
 
-    <div class="app-form__field-wrapper">
+    <app-form-field>
       <label for="form-password">Password</label>
       <input
         id="form-password"
@@ -26,12 +26,14 @@
         autocomplete="current-password"
         formControlName="password"
       />
-      <app-field-error *ngIf="password && password.touched && password.invalid">
-        Invalid email and/or password.
-      </app-field-error>
-    </div>
+      <app-form-field-error
+        *ngIf="password && password.touched && password.invalid"
+      >
+        Invalid password.
+      </app-form-field-error>
+    </app-form-field>
 
-    <div class="app-form__field-wrapper">
+    <app-form-field>
       <label class="app-form__field-label">
         <input
           class="app-form__field-checkbox"
@@ -41,10 +43,10 @@
         />
         Remember me
       </label>
-    </div>
+    </app-form-field>
 
-    <button class="app-form__submit" [disabled]="!loginForm.valid">
-      Log in
+    <button class="app-form__submit" [disabled]="loginForm.invalid || isLoading">
+      {{ isLoading ? "Waiting..." : "Log in" }}
     </button>
   </div>
 </form>
