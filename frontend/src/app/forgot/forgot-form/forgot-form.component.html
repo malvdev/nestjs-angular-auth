@@ -18,6 +18,8 @@
       </app-form-field-error>
     </app-form-field>
 
-    <button [disabled]="!forgotForm.valid">Send recovery link</button>
+    <button [disabled]="forgotForm.invalid || isLoading">
+      {{ isLoading ? "Waiting..." : "Send recovery link" }}
+    </button>
   </div>
 </form>

@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  Input,
   Output,
 } from '@angular/core';
 import {
@@ -20,12 +21,15 @@ import { ForgotPasswordContext } from '@core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ForgotFormComponent {
-  @Output()
-  formSubmit = new EventEmitter<ForgotPasswordContext>();
-
   forgotForm: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
   });
+
+  @Input()
+  isLoading: boolean = false;
+
+  @Output()
+  formSubmit: EventEmitter<ForgotPasswordContext> = new EventEmitter<ForgotPasswordContext>();
 
   get email(): AbstractControl | null {
     return this.forgotForm.get('email');
