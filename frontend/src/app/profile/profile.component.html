@@ -1,6 +1,6 @@
 <app-header></app-header>
 <h2 class="app-title">Profile</h2>
-<app-details-card *ngIf="profile">
+<app-details-card *ngIf="profile$ | async as profile">
   <app-details-card-row rowTitle="Username">
     {{ profile.name }}
   </app-details-card-row>
