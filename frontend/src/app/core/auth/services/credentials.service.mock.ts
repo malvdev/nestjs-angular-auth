@@ -1,4 +1,4 @@
-import { AuthData } from '../models/auth.model';
+import { AuthData } from '../models';
 
 export class MockCredentialsService {
   credentials: AuthData | null = {
@@ -6,8 +6,8 @@ export class MockCredentialsService {
     refreshToken: 'refreshToken',
   };
 
-  isAuth(): boolean {
-    return !!this.credentials;
+  getAuthToken(): string | undefined {
+    return this.credentials?.accessToken;
   }
 
   setCredentials(credentials?: AuthData, _remember?: boolean) {

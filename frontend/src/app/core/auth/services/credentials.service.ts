@@ -14,17 +14,8 @@ export class CredentialsService {
     private readonly _localStorage: LocalStorageService,
     private readonly _sessionStorage: SessionStorageService
   ) {
-    this._storage = this._sessionStorage.getItem(CREDENTIALS_KEY)
-      ? this._sessionStorage
-      : this._localStorage;
-
-    const savedCredentials =
-      this._sessionStorage.getItem(CREDENTIALS_KEY) ||
-      this._localStorage.getItem(CREDENTIALS_KEY);
-
-    if (savedCredentials) {
-      this._credentials = JSON.parse(savedCredentials);
-    }
+    this._storage = this._getStorage();
+    this._setSavedItem();
   }
 
   get storage(): Storage {
@@ -35,8 +26,17 @@ export class CredentialsService {
     return this._credentials;
   }
 
-  isAuth(): boolean {
-    return !!this.credentials?.accessToken;
+  getAuthToken(): string | undefined {
+    return this.credentials?.accessToken;
+  }
+
+  getRefreshToken(): string | undefined {
+    return this.credentials?.refreshToken;
+  }
+
+  removeItem(): void {
+    this._sessionStorage.removeItem(CREDENTIALS_KEY);
+    this._localStorage.removeItem(CREDENTIALS_KEY);
   }
 
   setCredentials(credentials?: AuthData, remember?: boolean) {
@@ -45,9 +45,22 @@ export class CredentialsService {
     if (credentials) {
       const storage = remember ? this._localStorage : this._sessionStorage;
       storage.setItem(CREDENTIALS_KEY, JSON.stringify(credentials));
-    } else {
-      this._sessionStorage.removeItem(CREDENTIALS_KEY);
-      this._localStorage.removeItem(CREDENTIALS_KEY);
+    }
+  }
+
+  private _getStorage(): Storage {
+    return this._sessionStorage.getItem(CREDENTIALS_KEY)
+      ? this._sessionStorage
+      : this._localStorage;
+  }
+
+  private _setSavedItem(): void {
+    const savedCredentials =
+      this._sessionStorage.getItem(CREDENTIALS_KEY) ||
+      this._localStorage.getItem(CREDENTIALS_KEY);
+
+    if (savedCredentials) {
+      this._credentials = JSON.parse(savedCredentials);
     }
   }
 }

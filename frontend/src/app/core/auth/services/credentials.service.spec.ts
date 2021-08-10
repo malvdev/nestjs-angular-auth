@@ -5,7 +5,7 @@ import {
   MemoryStorageService,
   SessionStorageService,
 } from '../../storages';
-import { AuthData } from '../models/auth.model';
+import { AuthData } from '../models';
 import { CredentialsService, CREDENTIALS_KEY } from './credentials.service';
 
 describe('CredentialsService', () => {
@@ -30,7 +30,7 @@ describe('CredentialsService', () => {
         refreshToken: 'refreshToken',
       });
 
-      expect(credentialsService.isAuth()).toBe(true);
+      expect(credentialsService.getAuthToken()).toBe('accessToken');
       expect((<AuthData>credentialsService.credentials).accessToken).toBe(
         'accessToken'
       );
@@ -39,13 +39,13 @@ describe('CredentialsService', () => {
     it('should clean authentication', () => {
       credentialsService.setCredentials();
 
-      expect(credentialsService.isAuth()).toBe(false);
+      expect(credentialsService.getAuthToken()).toBeUndefined();
     });
 
     it('should clear user authentication', () => {
       credentialsService.setCredentials();
 
-      expect(credentialsService.isAuth()).toBe(false);
+      expect(credentialsService.getAuthToken()).toBeUndefined();
       expect(credentialsService.credentials).toBeNull();
       expect(credentialsService.storage.getItem(CREDENTIALS_KEY)).toBeNull();
       expect(credentialsService.storage.getItem(CREDENTIALS_KEY)).toBeNull();
