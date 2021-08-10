@@ -6,6 +6,7 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { CoreModule } from '@core';
 import { DestroyService } from '@shared/services';
+import { SkeletonModule } from '@shared/components';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +21,7 @@ import { AppComponent } from './app.component';
     ToastrModule.forRoot({
       timeOut: 5000,
     }),
+    SkeletonModule,
     AppRoutingModule,
   ],
   bootstrap: [AppComponent],
