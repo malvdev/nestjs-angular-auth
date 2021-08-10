@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  Input,
   Output,
 } from '@angular/core';
 import {
@@ -19,14 +20,17 @@ import { LoginContext } from '@core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoginFormComponent {
-  @Output()
-  formSubmit: EventEmitter<LoginContext> = new EventEmitter<LoginContext>();
-
   loginForm: FormGroup = new FormGroup({
     email: new FormControl(null, [Validators.required, Validators.email]),
     password: new FormControl(null, [Validators.required]),
     remember: new FormControl(false),
   });
+
+  @Input()
+  isLoading: boolean = false;
+
+  @Output()
+  formSubmit: EventEmitter<LoginContext> = new EventEmitter<LoginContext>();
 
   get email(): AbstractControl | null {
     return this.loginForm.get('email');

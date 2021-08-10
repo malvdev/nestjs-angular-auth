@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  Input,
   Output,
 } from '@angular/core';
 import {
@@ -20,9 +21,6 @@ import { RegisterContext } from '@core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RegisterFormComponent {
-  @Output()
-  formSubmit: EventEmitter<RegisterContext> = new EventEmitter<RegisterContext>();
-
   registerForm: FormGroup = new FormGroup({
     name: new FormControl(null, [Validators.required]),
     email: new FormControl(null, [Validators.required, Validators.email]),
@@ -34,8 +32,18 @@ export class RegisterFormComponent {
 
   isShowPassword: boolean = false;
 
+  @Input()
+  isLoading: boolean = false;
+
+  @Output()
+  formSubmit: EventEmitter<RegisterContext> = new EventEmitter<RegisterContext>();
+
   get email(): AbstractControl | null {
     return this.registerForm.get('email');
+  }
+
+  get name(): AbstractControl | null {
+    return this.registerForm.get('name');
   }
 
   get password(): AbstractControl | null {

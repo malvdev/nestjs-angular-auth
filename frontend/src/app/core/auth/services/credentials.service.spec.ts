@@ -4,9 +4,10 @@ import {
   LocalStorageService,
   MemoryStorageService,
   SessionStorageService,
-} from '../../storages';
-import { AuthData } from '../models/auth.model';
-import { CredentialsService, CREDENTIALS_KEY } from './credentials.service';
+  AuthData,
+  CredentialsService,
+  CREDENTIALS_KEY,
+} from '@core';
 
 describe('CredentialsService', () => {
   let credentialsService: CredentialsService;
@@ -25,29 +26,26 @@ describe('CredentialsService', () => {
 
   describe('setCredentials', () => {
     it('should authenticate user if credentials are set', () => {
-      credentialsService.setCredentials({
+      const mockCredentials = {
         accessToken: 'accessToken',
         refreshToken: 'refreshToken',
-      });
+      };
 
-      expect(credentialsService.isAuth()).toBe(true);
+      credentialsService.setCredentials(mockCredentials);
+
+      expect(credentialsService.getAuthToken()).toBe(
+        mockCredentials.accessToken
+      );
       expect((<AuthData>credentialsService.credentials).accessToken).toBe(
         'accessToken'
       );
     });
 
-    it('should clean authentication', () => {
-      credentialsService.setCredentials();
-
-      expect(credentialsService.isAuth()).toBe(false);
-    });
-
     it('should clear user authentication', () => {
       credentialsService.setCredentials();
 
-      expect(credentialsService.isAuth()).toBe(false);
+      expect(credentialsService.getAuthToken()).toBeUndefined();
       expect(credentialsService.credentials).toBeNull();
-      expect(credentialsService.storage.getItem(CREDENTIALS_KEY)).toBeNull();
       expect(credentialsService.storage.getItem(CREDENTIALS_KEY)).toBeNull();
     });
   });

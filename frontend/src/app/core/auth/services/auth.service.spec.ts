@@ -1,30 +1,35 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
-import { AuthService } from './auth.service';
-import { CredentialsService } from './credentials.service';
-import { MockCredentialsService } from './credentials.service.mock';
-import { AUTH_OPTIONS_TOKEN } from '../tokens/auth-options.token';
+import {
+  ApiService,
+  APP_CONFIG,
+  AuthService,
+  CredentialsService,
+  MockCredentialsService,
+} from '@core';
 
 describe('AuthenticationService', () => {
   let authenticationService: AuthService;
-  let credentialsService: MockCredentialsService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule, RouterTestingModule],
       providers: [
-        { provide: CredentialsService, useClass: MockCredentialsService },
-        {
-          provide: AUTH_OPTIONS_TOKEN,
-          useValue: { apiBase: '' },
-        },
+        ApiService,
         AuthService,
+        {
+          provide: APP_CONFIG,
+          useValue: {
+            apiUrl: '',
+          },
+        },
+        { provide: CredentialsService, useClass: MockCredentialsService },
       ],
     });
 
     authenticationService = TestBed.inject(AuthService);
-    credentialsService = TestBed.inject(CredentialsService);
   });
 
   it('should be created', () => {

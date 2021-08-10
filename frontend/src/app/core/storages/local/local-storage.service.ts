@@ -1,6 +1,6 @@
-import { isPlatformServer } from '@angular/common';
-import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 
+import { IS_SERVER_PLATFORM } from '../../tokens';
 import { MemoryStorageService } from '../memory';
 
 @Injectable()
@@ -8,12 +8,10 @@ export class LocalStorageService implements Storage {
   private readonly _storage: Storage;
 
   constructor(
-    @Inject(PLATFORM_ID) private readonly _platformId: Object,
+    @Inject(IS_SERVER_PLATFORM) readonly isServer: boolean,
     private readonly _memoryStorage: MemoryStorageService
   ) {
-    this._storage = isPlatformServer(this._platformId)
-      ? this._memoryStorage
-      : window.localStorage;
+    this._storage = isServer ? this._memoryStorage : window.localStorage;
   }
 
   [name: string]: unknown;

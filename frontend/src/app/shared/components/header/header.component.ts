@@ -1,7 +1,8 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-import { Router } from '@angular/router';
+import { takeUntil } from 'rxjs/operators';
 
 import { AuthService } from '@core/auth';
+import { DestroyService } from '@shared/services';
 
 @Component({
   selector: 'app-header',
@@ -11,13 +12,11 @@ import { AuthService } from '@core/auth';
 })
 export class HeaderComponent {
   constructor(
-    private readonly _router: Router,
+    private readonly _destroy$: DestroyService,
     private readonly _authService: AuthService
   ) {}
 
   logout(): void {
-    this._authService.logout().subscribe(() => {
-      this._router.navigate(['/login'], { replaceUrl: true });
-    });
+    this._authService.logout().pipe(takeUntil(this._destroy$)).subscribe();
   }
 }

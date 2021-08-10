@@ -1,62 +1,36 @@
-import { Injectable, Inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-
+import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 import {
+  ApiService,
   AuthData,
-  AuthOptions,
   LoginContext,
   RegisterContext,
   ForgotPasswordContext,
   ForgotPasswordResponse,
   UserData,
-} from '../models/auth.model';
-import { CredentialsService } from './credentials.service';
-import { AUTH_OPTIONS_TOKEN } from '../tokens/auth-options.token';
+  CredentialsService,
+} from '@core';
 
 @Injectable()
 export class AuthService {
-  private readonly _options: AuthOptions;
-
-  get apiBase() {
-    return this._options.apiBase;
-  }
-
   constructor(
-    private readonly _http: HttpClient,
-    private readonly _credentialsService: CredentialsService,
-    @Inject(AUTH_OPTIONS_TOKEN) private readonly _authOptions: AuthOptions
-  ) {
-    const defaultOptions: AuthOptions = {
-      apiBase: '',
-    };
-
-    this._options = Object.assign(defaultOptions, this._authOptions);
-  }
-
-  isAuth(): boolean {
-    return this._credentialsService.isAuth();
-  }
-
-  getAuthToken(): string | undefined {
-    return this._credentialsService.credentials?.accessToken;
-  }
-
-  getRefreshToken(): string | undefined {
-    return this._credentialsService.credentials?.refreshToken;
-  }
+    private readonly _apiService: ApiService,
+    private readonly _router: Router,
+    private readonly _credentialsService: CredentialsService
+  ) {}
 
   register(context: RegisterContext): Observable<UserData> {
-    return this._http.post<UserData>(`${this.apiBase}/auth/register`, {
+    return this._apiService.post<UserData, RegisterContext>('/auth/register', {
       ...context,
     });
   }
 
   login(context: LoginContext): Observable<AuthData> {
-    return this._http
-      .post<AuthData>(`${this.apiBase}/auth/login`, {
+    return this._apiService
+      .post<AuthData, LoginContext>('/auth/login', {
         ...context,
       })
       .pipe(
@@ -68,10 +42,10 @@ export class AuthService {
   }
 
   refreshToken(): Observable<AuthData> {
-    return this._http
-      .post<AuthData>(
-        `${this.apiBase}/auth/refresh-token`,
-        this._credentialsService.credentials as AuthData
+    return this._apiService
+      .post<AuthData, AuthData | null>(
+        '/auth/refresh-token',
+        this._credentialsService.credentials
       )
       .pipe(
         map((data) => {
@@ -81,19 +55,23 @@ export class AuthService {
       );
   }
 
-  logout(): Observable<boolean> {
-    this._credentialsService.setCredentials();
-    return of(true);
-  }
-
   forgotPassword(
     context: ForgotPasswordContext
   ): Observable<ForgotPasswordResponse> {
-    return this._http.post<ForgotPasswordResponse>(
-      `${this.apiBase}/auth/forgot-password`,
+    return this._apiService.post<ForgotPasswordResponse, ForgotPasswordContext>(
+      '/auth/forgot-password',
       {
         ...context,
       }
+    );
+  }
+
+  logout(): Observable<boolean> {
+    return of(true).pipe(
+      tap(() => {
+        this._credentialsService.removeItem();
+        this._router.navigate(['/auth/login'], { replaceUrl: true });
+      })
     );
   }
 }

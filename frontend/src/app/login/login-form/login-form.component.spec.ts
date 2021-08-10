@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { LoginContext } from '@core';
-import { FieldErrorModule } from '@shared/components';
+import { FormFieldModule } from '@shared/components';
 
 import { LoginFormComponent } from './login-form.component';
 
@@ -13,7 +13,7 @@ describe('LoginFormComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LoginFormComponent],
-      imports: [ReactiveFormsModule, FieldErrorModule],
+      imports: [ReactiveFormsModule, FormFieldModule],
     }).compileComponents();
   });
 

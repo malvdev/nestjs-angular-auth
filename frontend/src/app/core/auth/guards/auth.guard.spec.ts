@@ -2,25 +2,25 @@ import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 
 import { AuthGuard } from './auth.guard';
-import { AuthService } from '../services/auth.service';
-import { MockAuthService } from '../services/auth.service.mock';
+import { CredentialsService, MockCredentialsService } from '../services';
 
 describe('AuthGuard', () => {
   let authGuard: AuthGuard;
-  let authService: AuthService;
+  let credentialsService: CredentialsService;
   let mockRouter: unknown;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
         AuthGuard,
-        { provide: AuthService, useClass: MockAuthService },
+        CredentialsService,
         { provide: Router, useValue: mockRouter },
+        { provide: CredentialsService, useClass: MockCredentialsService },
       ],
     });
 
     authGuard = TestBed.inject(AuthGuard);
-    authService = TestBed.inject(AuthService);
+    credentialsService = TestBed.inject(CredentialsService);
   });
 
   it('should be created', () => {

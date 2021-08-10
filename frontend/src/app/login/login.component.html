@@ -1,5 +1,5 @@
 <app-auth-template title="Log in">
-  <app-login-form (formSubmit)="onSubmit($event)"></app-login-form>
+  <app-login-form (formSubmit)="onSubmit($event)" [isLoading]="isLoading"></app-login-form>
   <hr />
   <div class="app-links">
     <a href="#" [routerLink]="['/auth/forgot']">Can't log in?</a>

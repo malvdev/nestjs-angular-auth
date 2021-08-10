@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   HttpEvent,
   HttpInterceptor,
@@ -8,9 +9,6 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { Router } from '@angular/router';
-
-import { environment } from '../../../../environments/environment';
 
 @Injectable()
 export class ErrorHandlerInterceptor implements HttpInterceptor {
@@ -22,19 +20,16 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next
       .handle(request)
-      .pipe(catchError((error) => this.errorHandler(error)));
+      .pipe(catchError((error) => this._errorHandler(error)));
   }
 
-  private errorHandler(response: any): Observable<any> {
-    if (!environment.production) {
-      console.error('Request error', response);
-    }
+  private _errorHandler(response: any): Observable<any> {
+    const statusCode = response.error.statusCode;
 
     if (
-      response.error.statusCode === HttpStatusCode.Unauthorized &&
-      response.error.message === 'Token: jwt expired'
+      statusCode === HttpStatusCode.Unauthorized ||
+      statusCode === HttpStatusCode.Forbidden
     ) {
-      // TODO: need to refresh token
       this._router.navigate(['/auth/login']);
     }
 

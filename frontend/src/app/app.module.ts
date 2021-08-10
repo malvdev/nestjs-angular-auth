@@ -5,13 +5,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 
 import { CoreModule } from '@core';
+import { DestroyService } from '@shared/services';
+import { SkeletonModule } from '@shared/components';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegisterModule } from './register';
-import { LoginModule } from './login';
-import { ForgotModule } from './forgot/forgot.module';
-import { ProfileModule } from './profile/profile.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -23,12 +21,10 @@ import { ProfileModule } from './profile/profile.module';
     ToastrModule.forRoot({
       timeOut: 5000,
     }),
-    RegisterModule,
-    LoginModule,
-    ForgotModule,
-    ProfileModule,
+    SkeletonModule,
     AppRoutingModule,
   ],
   bootstrap: [AppComponent],
+  providers: [DestroyService],
 })
 export class AppModule {}

@@ -5,7 +5,8 @@ import { ForgotComponent } from './forgot.component';
 
 const routes: Routes = [
   {
-    path: 'auth/forgot',
+    path: '',
+    pathMatch: 'full',
     component: ForgotComponent,
   },
 ];

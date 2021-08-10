@@ -1,17 +1,14 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
 
+import { CoreModule } from '@core';
 import {
-  AuthService,
-  AUTH_OPTIONS_TOKEN,
-  CredentialsService,
-  LocalStorageService,
-  MemoryStorageService,
-  SessionStorageService,
-} from '@core';
-import { DetailsCardModule, HeaderModule } from '@shared';
+  DetailsCardModule,
+  HeaderModule,
+  LoaderModule,
+} from '@shared/components';
+import { DestroyService } from '@shared/services';
 
 import { ProfileComponent } from './profile.component';
 
@@ -24,20 +21,13 @@ describe('ProfileComponent', () => {
       imports: [
         HttpClientTestingModule,
         RouterTestingModule,
+        CoreModule,
         HeaderModule,
+        LoaderModule,
         DetailsCardModule,
-        ToastrModule.forRoot(),
       ],
       declarations: [ProfileComponent],
-      providers: [
-        AuthService,
-        ToastrService,
-        CredentialsService,
-        LocalStorageService,
-        SessionStorageService,
-        MemoryStorageService,
-        { provide: AUTH_OPTIONS_TOKEN, useValue: { apiBase: '' } },
-      ],
+      providers: [DestroyService],
     }).compileComponents();
   });
 

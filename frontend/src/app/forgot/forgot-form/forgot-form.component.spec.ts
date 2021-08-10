@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ForgotPasswordContext } from '@core';
 
-import { FieldErrorModule } from '@shared/components';
+import { FormFieldModule } from '@shared/components';
 import { ForgotFormComponent } from './forgot-form.component';
 
 describe('ForgotFormComponent', () => {
@@ -12,7 +12,7 @@ describe('ForgotFormComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ForgotFormComponent],
-      imports: [ReactiveFormsModule, FieldErrorModule],
+      imports: [ReactiveFormsModule, FormFieldModule],
     }).compileComponents();
   });
 

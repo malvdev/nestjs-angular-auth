@@ -4,15 +4,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 
-import {
-  AuthService,
-  AUTH_OPTIONS_TOKEN,
-  CredentialsService,
-  LocalStorageService,
-  MemoryStorageService,
-  SessionStorageService,
-} from '@core';
-import { AuthTemplateModule, FieldErrorModule } from '@shared/components';
+import { CoreModule } from '@core';
+import { AuthTemplateModule, FormFieldModule } from '@shared/components';
+import { DestroyService } from '@shared/services';
 
 import { ForgotFormComponent } from './forgot-form';
 import { ForgotComponent } from './forgot.component';
@@ -28,19 +22,12 @@ describe('ForgotComponent', () => {
         HttpClientTestingModule,
         RouterTestingModule,
         ReactiveFormsModule,
+        CoreModule,
         AuthTemplateModule,
-        FieldErrorModule,
+        FormFieldModule,
         ToastrModule.forRoot(),
       ],
-      providers: [
-        AuthService,
-        ToastrService,
-        CredentialsService,
-        LocalStorageService,
-        SessionStorageService,
-        MemoryStorageService,
-        { provide: AUTH_OPTIONS_TOKEN, useValue: { apiBase: '' } },
-      ],
+      providers: [DestroyService, ToastrService],
     }).compileComponents();
   });
 

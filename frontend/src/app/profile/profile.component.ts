@@ -1,40 +1,20 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-import { AuthService, UserData } from '@core/auth';
-import { ProfileService } from '@shared';
+import { UserData } from '@core/auth';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ProfileComponent implements OnInit {
-  profile: UserData;
+export class ProfileComponent {
+  profile$: Observable<UserData> = this._activatedRoute.data.pipe(
+    map((data) => data.user)
+  );
 
-  constructor(
-    private readonly _router: Router,
-    private readonly _authService: AuthService,
-    private readonly _profileService: ProfileService,
-    private readonly _toastr: ToastrService
-  ) {}
-
-  ngOnInit(): void {
-    this._profileService.me().subscribe(
-      (data: UserData) => {
-        this.profile = data;
-      },
-      ({ error }: HttpErrorResponse) => {
-        this._toastr.error(error.message, 'Error');
-      }
-    );
-  }
-
-  logout(): void {
-    this._authService.logout().subscribe(() => {
-      this._router.navigate(['/login'], { replaceUrl: true });
-    });
-  }
+  constructor(private readonly _activatedRoute: ActivatedRoute) {}
 }

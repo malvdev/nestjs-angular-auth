@@ -4,14 +4,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { AuthService, AUTH_OPTIONS_TOKEN } from '@core/auth';
-import { AuthTemplateModule, FieldErrorModule } from '@shared/components';
-import { CredentialsService } from '@core/auth';
-import {
-  LocalStorageService,
-  MemoryStorageService,
-  SessionStorageService,
-} from '@core/storages';
+import { CoreModule } from '@core';
+import { AuthTemplateModule, FormFieldModule } from '@shared/components';
+import { DestroyService } from '@shared/services';
 
 import { RegisterFormComponent } from './register-form';
 import { RegisterComponent } from './register.component';
@@ -27,19 +22,12 @@ describe('RegisterComponent', () => {
         HttpClientTestingModule,
         RouterTestingModule,
         ReactiveFormsModule,
+        CoreModule,
         AuthTemplateModule,
-        FieldErrorModule,
+        FormFieldModule,
         ToastrModule.forRoot(),
       ],
-      providers: [
-        AuthService,
-        ToastrService,
-        CredentialsService,
-        LocalStorageService,
-        SessionStorageService,
-        MemoryStorageService,
-        { provide: AUTH_OPTIONS_TOKEN, useValue: { apiBase: '' } },
-      ],
+      providers: [DestroyService, ToastrService],
     }).compileComponents();
   });
 

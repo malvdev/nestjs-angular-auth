@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import {
   HttpEvent,
   HttpRequest,
@@ -7,19 +7,21 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-import { AuthService } from '../services/auth.service';
-import { environment } from '../../../../environments/environment';
+import { CredentialsService, AppConfig, APP_CONFIG } from '@core';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  constructor(private readonly _authService: AuthService) {}
+  constructor(
+    @Inject(APP_CONFIG) private readonly _appConfig: AppConfig,
+    private readonly _credentialService: CredentialsService
+  ) {}
 
   intercept(
     req: HttpRequest<unknown>,
     next: HttpHandler
   ): Observable<HttpEvent<unknown>> {
-    const authToken = this._authService.getAuthToken();
-    const isApiUrl = req.url.startsWith(environment.serverUrl);
+    const authToken = this._credentialService.getAuthToken();
+    const isApiUrl = req.url.startsWith(this._appConfig.apiUrl);
 
     if (authToken && isApiUrl) {
       const authReq = req.clone({

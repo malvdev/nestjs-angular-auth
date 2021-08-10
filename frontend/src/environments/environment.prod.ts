@@ -1,4 +1,6 @@
-export const environment = {
+import { AppConfig } from '@core/tokens';
+
+export const environment: AppConfig = {
   production: true,
-  serverUrl: 'http://localhost:4200/api',
+  apiUrl: 'http://localhost:4200/api',
 };

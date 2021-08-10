@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RegisterContext } from '@core';
 
-import { FieldErrorModule } from '@shared/components';
+import { FormFieldModule } from '@shared/components';
 
 import { RegisterFormComponent } from './register-form.component';
 
@@ -13,7 +13,7 @@ describe('RegisterFormComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [RegisterFormComponent],
-      imports: [ReactiveFormsModule, FieldErrorModule],
+      imports: [ReactiveFormsModule, FormFieldModule],
     }).compileComponents();
   });
 

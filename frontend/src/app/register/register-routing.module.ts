@@ -5,7 +5,8 @@ import { RegisterComponent } from './register.component';
 
 const routes: Routes = [
   {
-    path: 'auth/register',
+    path: '',
+    pathMatch: 'full',
     component: RegisterComponent,
   },
 ];
