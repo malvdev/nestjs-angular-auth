@@ -1,0 +1,136 @@
+html {
+  color: var(--color-text);
+  font-size: var(--font-size-m);
+  font-weight: var(--font-weight-light);
+  line-height: var(--line-height-normal);
+}
+
+body {
+  margin: 0;
+  font-family: var(--font);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  color: inherit;
+  font-family: var(--font-accent);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.2;
+}
+
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  cursor: pointer;
+}
+
+button,
+input,
+optgroup,
+select,
+textarea {
+  margin: 0;
+  color: inherit;
+  font: inherit;
+}
+
+button {
+  display: inline-block;
+  width: 100%;
+  padding: 6px 12px;
+  border: 1px solid transparent;
+  border-radius: var(--border-radius-button);
+  background: var(--color-button-primary);
+  color: var(--color-button-primary-content);
+  transition: background-color 0.15s ease-in-out;
+  text-align: center;
+  font-weight: 400;
+  white-space: nowrap;
+
+  &:hover {
+    background: var(--color-button-primary-hover);
+  }
+
+  &:active {
+    background: var(--color-button-primary-active);
+  }
+
+  &[disabled] {
+    background: var(--color-button-disabled);
+    color: var(--color-button-disabled-content);
+    cursor: default;
+  }
+}
+
+input {
+  width: 100%;
+  line-height: normal;
+}
+
+textarea,
+input {
+  display: block;
+  margin: 0 0 22px;
+}
+
+textarea,
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input:not([type="file"]),
+input[type="number"] {
+  box-sizing: border-box;
+  max-width: 400px;
+  width: 100%;
+  padding: 8px;
+  border-radius: var(--border-radius-control);
+  border: 1px solid var(--color-dark-indigo-15-flat);
+  background: var(--color-dark-indigo-10-flat);
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="number"]:focus {
+  border-color: var(--color-dark-indigo-30-flat);
+  outline: none;
+  box-shadow: 0 0 6px var(--color-dark-indigo-15-flat);
+}
+
+a {
+  text-decoration: none;
+}
+
+hr {
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid hsl(0, 0%, 80%);
+  margin: 16px 0;
+  padding: 0;
+}
+
+ol,
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+label {
+  display: block;
+  margin: 0 0 8px;
+  font-weight: var(--font-weight-normal);
+}
