@@ -1,7 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ToastrModule, ToastrService } from 'ngx-toastr';
 
 import {
   AuthService,
@@ -11,7 +10,12 @@ import {
   MemoryStorageService,
   SessionStorageService,
 } from '@core';
-import { DetailsCardModule, HeaderModule } from '@shared';
+import {
+  DestroyService,
+  DetailsCardModule,
+  HeaderModule,
+  LoaderModule,
+} from '@shared';
 
 import { ProfileComponent } from './profile.component';
 
@@ -25,13 +29,13 @@ describe('ProfileComponent', () => {
         HttpClientTestingModule,
         RouterTestingModule,
         HeaderModule,
+        LoaderModule,
         DetailsCardModule,
-        ToastrModule.forRoot(),
       ],
       declarations: [ProfileComponent],
       providers: [
+        DestroyService,
         AuthService,
-        ToastrService,
         CredentialsService,
         LocalStorageService,
         SessionStorageService,
