@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { LocalStorageService, SessionStorageService } from '../../storages';
-import { AuthData } from '../models/auth.model';
+import { LocalStorageService, SessionStorageService, AuthData } from '@core';
 
 export const CREDENTIALS_KEY = 'credentials';
 

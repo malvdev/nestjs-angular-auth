@@ -3,17 +3,16 @@ import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 
-import { ApiService } from '@core/api';
-
 import {
+  ApiService,
   AuthData,
   LoginContext,
   RegisterContext,
   ForgotPasswordContext,
   ForgotPasswordResponse,
   UserData,
-} from '../models';
-import { CredentialsService } from './credentials.service';
+  CredentialsService,
+} from '@core';
 
 @Injectable()
 export class AuthService {
