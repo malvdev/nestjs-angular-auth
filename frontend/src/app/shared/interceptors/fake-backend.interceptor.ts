@@ -14,15 +14,15 @@ import { delay, dematerialize, materialize, mergeMap } from 'rxjs/operators';
 import { LocalStorageService, RegisterContext, UserData } from '@core';
 import { environment } from '../../../environments/environment';
 
-const serverUrl = environment.serverUrl;
+const apiUrl = environment.apiUrl;
 const accessToken = 'fake-access-token';
 const refreshToken = 'fake-refresh-token';
 
 const urls = {
-  register: `${serverUrl}/auth/register`,
-  login: `${serverUrl}/auth/login`,
-  forgotPassword: `${serverUrl}/auth/forgot-password`,
-  me: `${serverUrl}/user/me`,
+  register: `${apiUrl}/auth/register`,
+  login: `${apiUrl}/auth/login`,
+  forgotPassword: `${apiUrl}/auth/forgot-password`,
+  me: `${apiUrl}/user/me`,
 };
 
 @Injectable()
@@ -63,7 +63,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
         })
       )
       .pipe(materialize())
-      .pipe(delay(500))
+      .pipe(delay(700))
       .pipe(dematerialize());
   }
 
@@ -85,7 +85,7 @@ export class FakeBackendInterceptor implements HttpInterceptor {
     }
 
     const newUser: UserData = {
-      id: this._users.length + 1,
+      id: `${this._users.length + 1}`,
       name: name || '',
       email: email,
       password: password,
