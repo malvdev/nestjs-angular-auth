@@ -2,20 +2,13 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
+import { CoreModule } from '@core';
 import {
-  AuthService,
-  AUTH_OPTIONS_TOKEN,
-  CredentialsService,
-  LocalStorageService,
-  MemoryStorageService,
-  SessionStorageService,
-} from '@core';
-import {
-  DestroyService,
   DetailsCardModule,
   HeaderModule,
   LoaderModule,
-} from '@shared';
+} from '@shared/components';
+import { DestroyService } from '@shared/services';
 
 import { ProfileComponent } from './profile.component';
 
@@ -28,20 +21,13 @@ describe('ProfileComponent', () => {
       imports: [
         HttpClientTestingModule,
         RouterTestingModule,
+        CoreModule,
         HeaderModule,
         LoaderModule,
         DetailsCardModule,
       ],
       declarations: [ProfileComponent],
-      providers: [
-        DestroyService,
-        AuthService,
-        CredentialsService,
-        LocalStorageService,
-        SessionStorageService,
-        MemoryStorageService,
-        { provide: AUTH_OPTIONS_TOKEN, useValue: { apiBase: '' } },
-      ],
+      providers: [DestroyService],
     }).compileComponents();
   });
 

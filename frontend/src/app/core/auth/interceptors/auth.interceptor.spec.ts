@@ -1,9 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 
-import { StoragesModule, CredentialsService } from '@core';
-
-import { APP_CONFIG } from '../../tokens';
-import { AuthInterceptor } from './auth.interceptor';
+import {
+  StoragesModule,
+  CredentialsService,
+  APP_CONFIG,
+  AuthInterceptor,
+} from '@core';
 
 describe('AuthInterceptor', () => {
   beforeEach(() => {

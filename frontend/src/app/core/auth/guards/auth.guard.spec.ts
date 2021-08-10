@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
 
 import { AuthGuard } from './auth.guard';
-import { CredentialsService } from '../services';
+import { CredentialsService, MockCredentialsService } from '../services';
 
 describe('AuthGuard', () => {
   let authGuard: AuthGuard;
@@ -15,6 +15,7 @@ describe('AuthGuard', () => {
         AuthGuard,
         CredentialsService,
         { provide: Router, useValue: mockRouter },
+        { provide: CredentialsService, useClass: MockCredentialsService },
       ],
     });
 

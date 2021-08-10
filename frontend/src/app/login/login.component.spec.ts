@@ -1,18 +1,12 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AuthService, AUTH_OPTIONS_TOKEN } from '@core/auth';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ToastrModule } from 'ngx-toastr';
 
+import { CoreModule } from '@core';
 import { AuthTemplateModule, FormFieldModule } from '@shared/components';
-import { CredentialsService } from '@core/auth/services';
-import {
-  LocalStorageService,
-  MemoryStorageService,
-  SessionStorageService,
-} from '@core/storages';
-import { DestroyService } from '@shared';
+import { DestroyService } from '@shared/services';
 
 import { LoginFormComponent } from './login-form';
 import { LoginComponent } from './login.component';
@@ -28,19 +22,12 @@ describe('LoginComponent', () => {
         HttpClientTestingModule,
         RouterTestingModule,
         ReactiveFormsModule,
+        CoreModule,
         AuthTemplateModule,
         FormFieldModule,
         ToastrModule.forRoot(),
       ],
-      providers: [
-        DestroyService,
-        AuthService,
-        CredentialsService,
-        LocalStorageService,
-        SessionStorageService,
-        MemoryStorageService,
-        { provide: AUTH_OPTIONS_TOKEN, useValue: { apiBase: '' } },
-      ],
+      providers: [DestroyService],
     }).compileComponents();
   });
 

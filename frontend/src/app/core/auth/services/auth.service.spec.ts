@@ -2,11 +2,13 @@ import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { ApiService } from '@core/api';
-import { APP_CONFIG } from '../../tokens';
-import { AuthService } from './auth.service';
-import { CredentialsService } from './credentials.service';
-import { MockCredentialsService } from './credentials.service.mock';
+import {
+  ApiService,
+  APP_CONFIG,
+  AuthService,
+  CredentialsService,
+  MockCredentialsService,
+} from '@core';
 
 describe('AuthenticationService', () => {
   let authenticationService: AuthService;
