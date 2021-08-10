@@ -1,8 +1,8 @@
 import { Injectable, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import { Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 import {
   AuthData,
@@ -12,7 +12,7 @@ import {
   ForgotPasswordContext,
   ForgotPasswordResponse,
   UserData,
-} from '../models/auth.model';
+} from '../models';
 import { CredentialsService } from './credentials.service';
 import { AUTH_OPTIONS_TOKEN } from '../tokens/auth-options.token';
 
@@ -26,6 +26,7 @@ export class AuthService {
 
   constructor(
     private readonly _http: HttpClient,
+    private readonly _router: Router,
     private readonly _credentialsService: CredentialsService,
     @Inject(AUTH_OPTIONS_TOKEN) private readonly _authOptions: AuthOptions
   ) {
@@ -83,7 +84,11 @@ export class AuthService {
 
   logout(): Observable<boolean> {
     this._credentialsService.setCredentials();
-    return of(true);
+    return of(true).pipe(
+      tap(() => {
+        this._router.navigate(['/auth/login'], { replaceUrl: true });
+      })
+    );
   }
 
   forgotPassword(
