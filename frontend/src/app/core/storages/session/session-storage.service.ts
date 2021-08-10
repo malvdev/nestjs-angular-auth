@@ -1,7 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 
-import { IS_SERVER_PLATFORM } from '@core/tokens';
-
+import { IS_SERVER_PLATFORM } from '../../tokens';
 import { MemoryStorageService } from '../memory';
 
 @Injectable()
