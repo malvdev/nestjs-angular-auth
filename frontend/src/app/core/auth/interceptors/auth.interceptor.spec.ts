@@ -1,15 +1,23 @@
 import { TestBed } from '@angular/core/testing';
 
-import { AuthService } from '../services/auth.service';
-import { MockAuthService } from '../services/auth.service.mock';
+import { StoragesModule, CredentialsService } from '@core';
+
+import { APP_CONFIG } from '../../tokens';
 import { AuthInterceptor } from './auth.interceptor';
 
 describe('AuthInterceptor', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [StoragesModule],
       providers: [
         AuthInterceptor,
-        { provide: AuthService, useClass: MockAuthService },
+        CredentialsService,
+        {
+          provide: APP_CONFIG,
+          useValue: {
+            apiUrl: '',
+          },
+        },
       ],
     });
   });
