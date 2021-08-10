@@ -4,6 +4,8 @@ import {
 } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 
+import { ApiService, APP_CONFIG } from '@core';
+
 import { ProfileService } from './profile.service';
 
 describe('ProfileService', () => {
@@ -13,7 +15,16 @@ describe('ProfileService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule],
-      providers: [ProfileService],
+      providers: [
+        ProfileService,
+        ApiService,
+        {
+          provide: APP_CONFIG,
+          useValue: {
+            apiUrl: '',
+          },
+        },
+      ],
     });
 
     httpTestingController = TestBed.inject(HttpTestingController);

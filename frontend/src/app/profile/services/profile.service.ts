@@ -1,22 +1,17 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-import { UserData } from '@core';
-
-import { environment } from '../../../environments/environment';
+import { ApiService, UserData } from '@core';
 
 @Injectable()
 export class ProfileService {
-  private readonly _serverUrl: string = environment.serverUrl;
-
-  constructor(private readonly _http: HttpClient) {}
+  constructor(private readonly _apiService: ApiService) {}
 
   me(): Observable<UserData> {
-    return this._http.get<UserData>(this._serverUrl + '/user/me');
+    return this._apiService.get<UserData>('/user/me');
   }
 
   users(): Observable<UserData> {
-    return this._http.get<UserData>(this._serverUrl + '/user');
+    return this._apiService.get<UserData>('/user');
   }
 }
