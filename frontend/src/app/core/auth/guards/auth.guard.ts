@@ -6,20 +6,20 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 
-import { AuthService } from '../services/auth.service';
+import { CredentialsService } from '../services';
 
 @Injectable()
 export class AuthGuard implements CanActivate {
   constructor(
     private readonly _router: Router,
-    private readonly _authService: AuthService
+    private readonly _credentialService: CredentialsService
   ) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): boolean {
-    if (this._authService.isAuth()) {
+    if (this._credentialService.getAuthToken()) {
       return true;
     }
 
