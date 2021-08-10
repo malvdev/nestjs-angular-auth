@@ -28,21 +28,15 @@ export class ApiService {
   }
 
   post<T, D>(url: string, data: D): Observable<T> {
-    return this._http.post<T>(
-      `${this._appConfig.apiUrl}${url}`,
-      JSON.stringify(data),
-      { headers: this.headers }
-    );
+    return this._http.post<T>(`${this._appConfig.apiUrl}${url}`, data, {
+      headers: this.headers,
+    });
   }
 
   put<T, D>(url: string, data: D): Observable<T> {
-    return this._http.put<T>(
-      `${this._appConfig.apiUrl}${url}`,
-      JSON.stringify(data),
-      {
-        headers: this.headers,
-      }
-    );
+    return this._http.put<T>(`${this._appConfig.apiUrl}${url}`, data, {
+      headers: this.headers,
+    });
   }
 
   delete<T>(url: string): Observable<T> {
