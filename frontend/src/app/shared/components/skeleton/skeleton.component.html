@@ -1,0 +1,7 @@
+<ng-container *ngIf="skeleton | async as config; else content">
+  <ng-container *ngComponentOutlet="config.component"></ng-container>
+</ng-container>
+
+<ng-template #content>
+  <ng-content></ng-content>
+</ng-template>
