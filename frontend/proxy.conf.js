@@ -9,7 +9,7 @@ const HttpsProxyAgent = require("https-proxy-agent");
 const proxyConfig = [
   {
     context: "/api",
-    target: "http://localhost:3000",
+    target: "http://api:3000",
     changeOrigin: true,
     secure: false,
   },

@@ -1,14 +1,26 @@
-version: '3'
+version: "3"
 
 services:
   web:
-    build: .
+    build:
+      context: ./frontend
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./frontend:/usr/src/app
+      - /usr/src/app/node_modules
+    links:
+      - "api"
+
+  api:
+    build:
+      context: ./backend
     env_file:
       - .env
     ports:
       - 3000:3000
     volumes:
-      - .:/usr/src/app
+      - ./backend:/usr/src/app
       - /usr/src/app/node_modules
 
   db:

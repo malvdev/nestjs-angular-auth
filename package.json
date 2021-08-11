@@ -3,12 +3,12 @@
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
-    "init": "npm install && npm run init:web && npm run init:api && npm run prepare",
+    "postinstall": "npm run init",
+    "init": "npm run init:web && npm run init:api && npm run prepare",
     "init:web": "cd ./frontend && npm install",
     "init:api": "cd ./backend && npm install",
-    "start:web": "cd ./frontend && npm run start",
-    "start:api": "cd ./backend && npm run start:docker",
-    "stop:api": "cd ./backend && npm run stop:docker",
+    "start": "docker-compose up -d",
+    "stop": "docker-compose down",
     "prepare": "husky install"
   },
   "repository": {
