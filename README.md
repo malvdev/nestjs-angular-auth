@@ -41,9 +41,8 @@ I wanted to create a simple application using JWT authentication with frontend o
 1. Have [Node.js](https://nodejs.org/en/) and [Docker](https://www.docker.com/) installed.
 1. Clone the project.
 1. Go to the project's folder and run `npm install` to install dependencies.
-1. Run `npm run init`to initialize the project.
-1. Run `npm run start:api` to start backend API. Browse `Swagger Open API` Doc at [http://localhost:3000/docs](http://localhost:3000/docs)
-1. Run `npm run start:web` to start the web App. Browse `App` at [http://localhost:4200/](http://localhost:4200/)
+1. Run `npm run start` to start the app. Browse `Swagger Open API` Doc at [http://localhost:3000/docs](http://localhost:3000/docs) and `App` at [http://localhost:4200/](http://localhost:4200/)
+1. Run `npm run stop` to stop the app.
 
 ## Media
 
