@@ -13,6 +13,7 @@ Demo link on fake backend.
 - [Motivation](#Motivation)
 - [Features](#Features)
 - [Technologies](#Technologies)
+- [Configuration](#Configuration)
 - [Instalation](#Instalation)
 - [Media](#Media)
 
@@ -35,6 +36,10 @@ I wanted to create a simple application using JWT authentication with frontend o
 - JSON Web Token (JWT)
 - Docker
 - MySQL
+
+## Configuration
+
+Environment configuration in `.env`file.
 
 ## Instalation
 
