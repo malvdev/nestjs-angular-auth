@@ -14,7 +14,7 @@ Demo link on fake backend.
 - [Features](#Features)
 - [Technologies](#Technologies)
 - [Configuration](#Configuration)
-- [Instalation](#Instalation)
+- [Installation](#Installation)
 - [Media](#Media)
 
 ## Motivation
@@ -41,7 +41,7 @@ I wanted to create a simple application using JWT authentication with frontend o
 
 Environment configuration in `.env`file.
 
-## Instalation
+## Installation
 
 1. Have [Node.js](https://nodejs.org/en/) and [Docker](https://www.docker.com/) installed.
 1. Clone the project.
