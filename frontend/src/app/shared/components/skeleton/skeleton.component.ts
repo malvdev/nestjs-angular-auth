@@ -40,8 +40,10 @@ export class SkeletonComponent {
     );
 
     const skeleton = this._router.events.pipe(
-      filter((event) => event instanceof RoutesRecognized),
-      map((event: any) => this._getSkeleton(event.state))
+      filter(
+        (event): event is RoutesRecognized => event instanceof RoutesRecognized
+      ),
+      map((event) => this._getSkeleton(event.state))
     );
 
     this.skeleton = skeleton.pipe(
